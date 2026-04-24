@@ -14,7 +14,7 @@ project:
   edit_url: https://gitlab.tuwien.ac.at/cookbooks/private/microwave-remote-sensing-cookbook
 
   keywords:
-    - 
+    -
 
   parts:
     language: Python
@@ -30,12 +30,27 @@ project:
     - title: Preamble
       children:
         - file: notebooks/how-to-cite.md
-    - title: Content
+    - file: notebooks/01_in_class_exercise.ipynb
+    - file: notebooks/02_in_class_exercise.ipynb
+    - file: notebooks/03_in_class_exercise.ipynb
+    - file: notebooks/04_in_class_exercise.ipynb
+    - file: notebooks/05_in_class_exercise.ipynb
+    - file: notebooks/06_in_class_exercise.ipynb
+    - file: notebooks/07_in_class_exercise.ipynb
+    - file: notebooks/08_in_class_exercise.ipynb
+    - file: notebooks/09_in_class_exercise.ipynb
+    - title: Exercises
       children:
-        - file: notebooks/notebook-template.ipynb
-    - title: Developing
-      children:
-        - file: CONTRIBUTING.md
+        - file: notebooks/01_homework_exercise.md
+        - file: notebooks/02_homework_exercise.md
+        - file: notebooks/03_homework_exercise.md
+        - file: notebooks/04_homework_exercise.md
+        - file: notebooks/05_homework_exercise.md
+        - file: notebooks/06_homework_exercise.md
+        - file: notebooks/07_homework_exercise.md
+        - file: notebooks/08_homework_exercise.md
+        - file: notebooks/09_homework_exercise.md
+    - file: CONTRIBUTING.md
   error_rules:
     - rule: image-downloads
       severity: ignore

@@ -1,0 +1,243 @@
+"""Functions to process data."""
+
+import contextlib
+import os
+from pathlib import Path
+from typing import Literal, Never  # type: ignore[ty-not-there-yet]
+
+import numpy as np
+import numpy.typing as npt
+import snaphu
+import xarray as xr
+
+
+@contextlib.contextmanager
+def suppress_output():  # noqa: ANN201
+    """Suppress stdout and stderr temporarily with a context manager.
+
+    This manager redirects all standard output and standard error to
+    ``os.devnull`` for the duration of the ``with`` block. The original
+    streams are guaranteed to be restored when the block exits, even if
+    errors occur.
+
+    Yields
+    ------
+    None
+        Provides the context for the ``with`` statement; does not return a value.
+
+    """
+    with Path.open(os.devnull, "w") as devnull:  # type: ignore[no-overload-matching]
+        old_stdout = os.dup(1)
+        old_stderr = os.dup(2)
+
+        os.dup2(devnull.fileno(), 1)
+        os.dup2(devnull.fileno(), 2)
+
+        try:
+            yield
+        finally:
+            os.dup2(old_stdout, 1)
+            os.dup2(old_stderr, 2)
+            os.close(old_stdout)
+            os.close(old_stderr)
+
+
+# TODO: Remove complexity from the function  # noqa: FIX002
+def unwrap_array(  # noqa: D417, PLR0913
+    data: xr.Dataset,
+    complex_var: str = "cmplx",
+    ouput_var: str = "unwrapped",
+    mask: xr.DataArray | None = None,
+    coherence: xr.DataArray | None = None,
+    mask_nodata_value: int = 0,
+    coh_low_threshold: float | None = None,
+    coh_high_threshold: float | None = None,
+    nlooks: float = 1.0,
+    cost: Literal["defo", "smooth"] = "smooth",
+    init: Literal["mcf", "mst"] = "mcf",
+    **kwargs: Never,
+) -> xr.Dataset:
+    """Unwraps the phase data using the snaphu algorithm.
+
+    Parameters
+    ----------
+    data: xarray DataArray with complex numbers
+    complex_var: Name of the variable with the complex numbers
+    ouput_var: Name of the variable with the unwrapped phase
+    mask: xarray DataArray with mask values
+    coherence: xarray DataArray with coherence values (optional)
+    mask_nodata_value: Value of the no data pixels in the mask
+    coh_low_threshold: Lower threshold for the coherence values
+    coh_high_threshold: Higher threshold for the coherence values
+    nlooks: The number of looks
+    cost: Statistical cost mode
+    init: Algorithm used for initialization of unwrapped phase gradients.
+
+    Returns
+    -------
+    xarray DataArray with the unwrapped phase
+
+    """
+    # Get the complex data
+    complex_array = data[complex_var]
+
+    # Create a mask for areas with no data
+    if mask is None:
+        mask: xr.DataArray = (complex_array.real != mask_nodata_value).astype(bool)  # type: ignore[no-redef]
+
+    # Apply coherence thresholds if provided
+    if coherence is not None:
+        if coh_low_threshold is not None and coh_high_threshold is not None:
+            coh_mask: xr.DataArray = (
+                coh_low_threshold <= coherence <= coh_high_threshold
+            ).astype(bool)
+            mask: xr.DataArray = mask & coh_mask  # type: ignore[operator, no-redef]
+
+        if coh_low_threshold is not None:
+            coh_mask: xr.DataArray = (coh_low_threshold <= coherence).astype(bool)  # type: ignore[no-redef]
+            mask: xr.DataArray = mask & coh_mask  # type: ignore[operator, no-redef]
+
+        if coh_high_threshold is not None:
+            coh_mask = (coherence <= coh_high_threshold).astype(bool)
+            mask: xr.DataArray = mask & coh_mask  # type: ignore[operator, no-redef]
+
+    # Apply the mask to the data
+    complex_array = complex_array.where(mask)
+
+    if coherence is None:
+        # TODO: Resolve type-checker complaints  # noqa: FIX002
+        coherence: np.ndarray = np.ones_like(complex_array.real)  # type: ignore[no-redef]
+
+    # Unwrap the phase (already in complex form)
+    with suppress_output():
+        unw, _ = snaphu.unwrap(
+            igram=complex_array,
+            corr=coherence,  # type: ignore[arg-type]
+            nlooks=nlooks,
+            cost=cost,
+            init=init,
+            mask=mask,
+            **kwargs,
+        )
+
+    # Build xarray DataArray with the unwrapped phase
+    data[ouput_var] = (("y", "x"), unw)
+
+    # Mask the unwrapped phase
+    data[ouput_var] = data[ouput_var].where(mask)
+    return data
+
+
+def subsetting(
+    ds: xr.Dataset,
+    x0: int = 0,
+    y0: int = 0,
+    dx: int = 500,
+    dy: int = 500,
+) -> xr.Dataset:
+    """Extract a rectangular subset from an xarray object.
+
+    Parameters
+    ----------
+    ds : xarray.Dataset
+        The data object to subset.
+    x0 : int, default 0
+        Starting index along the 'x' dimension.
+    y0 : int, default 0
+        Starting index along the 'y' dimension.
+    dx : int, default 500
+        The size (number of pixels) of the subset along the 'x' dimension.
+    dy : int, default 500
+        The size (number of pixels) of the subset along the 'y' dimension.
+
+    Returns
+    -------
+    xarray.Dataset
+        A new object containing only the data within the specified slice.
+
+    """
+    return ds.isel(x=slice(x0, x0 + dx), y=slice(y0, y0 + dy))
+
+
+def add_speckle(array: npt.NDArray, noise: float = 0.3) -> npt.NDArray:
+    """Add simulated Rayleigh speckle noise to an array.
+
+    Parameters
+    ----------
+    array : npt.ArrayLike
+        Input array to which speckle will be added.
+    noise : float, optional
+        Fraction of pixels to affect (0.0 to 1.0). Default is 0.3.
+
+    Returns
+    -------
+    npt.ArrayLike
+        The input array with speckle noise applied.
+
+    """
+    # Rayleigh speckle noise
+    total_pixels = array.shape[0] * array.shape[1]
+    speckled_pixels = int(total_pixels * noise)
+
+    # Randomly select pixels to add speckle
+    rng = np.random.default_rng()
+    speckled_indices = rng.choice(total_pixels, speckled_pixels, replace=False)
+
+    # Add speckle to the selected pixels
+    speckle_noise = rng.gumbel(scale=1.0, size=speckled_pixels)
+    array.ravel()[speckled_indices] *= speckle_noise
+    return array
+
+
+def convert_db_to_linear(
+    ideal_data: npt.NDArray,
+    speckled_data: npt.NDArray,
+) -> tuple[npt.NDArray, npt.NDArray]:
+    """Convert backscatter data from decibel (dB) to linear scale.
+
+    Parameters
+    ----------
+    ideal_data : np.ndarray
+        Ideal backscatter data in dB.
+    speckled_data : np.ndarray
+        Speckled backscatter data in dB.
+
+    Returns
+    -------
+    tuple of np.ndarray
+        A tuple containing:
+        - ideal_data_linear : Ideal data in linear units.
+        - speckled_data_linear : Speckled data in linear units.
+
+    """
+    # Convert dB to linear scale for speckle addition
+    ideal_data_linear = 10 ** (ideal_data / 10)
+    speckled_data_linear = 10 ** (speckled_data / 10)
+    return ideal_data_linear, speckled_data_linear
+
+
+def convert_linear_to_db(
+    ideal_data_linear: npt.NDArray,
+    speckled_data_linear: npt.NDArray,
+) -> tuple[npt.NDArray, npt.NDArray]:
+    """Convert backscatter data from linear to decibel (dB) scale.
+
+    Parameters
+    ----------
+    ideal_data_linear : np.ndarray
+        Ideal backscatter data in linear units.
+    speckled_data_linear : np.ndarray
+        Speckled backscatter data in linear units.
+
+    Returns
+    -------
+    tuple of np.ndarray
+        A tuple containing:
+        - ideal_data_db : Ideal data in dB.
+        - speckled_data_db : Speckled data in dB.
+
+    """
+    # Convert back to dB scale
+    ideal_data_db = 10 * np.log10(ideal_data_linear)
+    speckled_data_db = 10 * np.log10(speckled_data_linear)
+    return ideal_data_db, speckled_data_db

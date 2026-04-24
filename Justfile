@@ -67,7 +67,7 @@ ci python="3.12":
 # install the pre-commit hooks
 [group("dev")]
 hooks:
-    uvx pre-commit install
+    uvx prek install
 
 # clean all build/compilation files and directories
 [group("dev")]

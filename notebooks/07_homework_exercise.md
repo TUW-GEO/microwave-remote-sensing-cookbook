@@ -42,7 +42,9 @@ sig0_da
 Let's build up the Lee filter function:
 
 ```{code-cell} ipython3
-#| eval: false
+---
+tags: skip-execution
+---
 
 def lee_filter(raster, size=...):
     """
@@ -67,7 +69,9 @@ def lee_filter(raster, size=...):
 Apply your function and compute the Lee filter for at least two different kernel sizes (size number must be odd).
 
 ```{code-cell} ipython3
-#| eval: false
+---
+tags: skip-execution
+---
 
 sig0_da.data = ...  # YOUR CODE HERE
 ```
@@ -75,7 +79,9 @@ sig0_da.data = ...  # YOUR CODE HERE
 Plot you results usign the following code:
 
 ```{code-cell} ipython3
-#| eval: false
+---
+tags: skip-execution
+---
 
 sig0_da.hvplot.image(
     x="x", y="y", robust=True, data_aspect=1, cmap="Greys_r", rasterize=True

@@ -33,8 +33,9 @@ from odc import stac as odc_stac
 ## List all collection names and select one
 
 ```{code-cell} ipython3
-#| eval: false
-
+---
+tags: skip-execution
+---
 eodc_catalog = pystac_client.Client.open("https://stac.eodc.eu/api/v1")
 
 colllection_id = ...  # YOUR CODE HERE
@@ -46,8 +47,9 @@ collection
 ## Define spatial and temporal extent and use client to load the metadata
 
 ```{code-cell} ipython3
-#| eval: false
-
+---
+tags: skip-execution
+---
 # Define the area of interest by providing coordinates that cover your latest
 # holiday destination (can be a city, state, country, etc.)
 latmin, latmax = ...  # YOUR CODE HERE
@@ -66,7 +68,9 @@ print(len(items), "scenes found.")
 ## Find necessary metadata, like bands, resolution, coordinate reference system
 
 ```{code-cell} ipython3
-#| eval: false
+---
+tags: skip-execution
+---
 
 # Pick one item from items using indexing get the relative orbit from the item
 # properties
@@ -79,7 +83,9 @@ print(f"The relative orbit number of the item is {relative_orbit}")
 **Take care that your dataset is not to big by limiting the bounds and time range!**
 
 ```{code-cell} ipython3
-#| eval: false
+---
+tags: skip-execution
+---
 
 bands = ...  # YOUR CODE HERE
 chunks = {"time": 1, "x": 1000, "y": 1000}
@@ -95,7 +101,9 @@ sig0_dc = odc_stac.load(
 ## Define the nodata value and scale factor and decode the data
 
 ```{code-cell} ipython3
-#| eval: false
+---
+tags: skip-execution
+---
 
 nodata = ...  # YOUR CODE HERE
 scale = ...  # YOUR CODE HERE
@@ -106,7 +114,9 @@ sig0_dc = ...  # YOUR CODE HERE
 ## Plot the loaded data
 
 ```{code-cell} ipython3
-#| eval: false
+---
+tags: skip-execution
+---
 
 ...  # YOUR CODE HERE
 ```

@@ -29,6 +29,10 @@ from microwave_remote_sensing_cookbook.processing import unwrap_array  # noqa: F
 ```
 
 ```{code-cell} ipython3
+---
+tags: skip-execution
+---
+
 url = get_intake_url()
 cat = intake.open_catalog(url)
 ds = cat.ex9.read().compute()
@@ -44,6 +48,10 @@ mask = (ds.phase != 0).astype(bool)
 ```
 
 ```{code-cell} ipython3
+---
+tags: skip-execution
+---
+
 def compute_complex_band(phase_band, intensity_band):
     """
     Computes the complex-valued band for SAR interferograms from phase and intensity bands.
@@ -70,7 +78,10 @@ ds
 Plot the above provided data. Please note that we are plotting images in Slant Range geometry (East-West flipped due to the descending acquisition pass).
 
 ```{code-cell} ipython3
-# | eval: false
+---
+tags: skip-execution
+---
+
 
 fig, axes = plt.subplots(1, 3, figsize=(15, 5))
 ds.phase.where(mask).plot.imshow(cmap=cmap_cyc, ax=axes[0]).axes.set_title("Phase")
@@ -87,13 +98,19 @@ Kernels with values higher than 3 might lead the unwrapping function to crash, t
 It might take up to 1 or 2 minutes to execute the function, let the code run, and the output be printed (it will be cleared out at the end).
 
 ```{code-cell} ipython3
+---
+tags: skip-execution
+---
 # coarsen
 kernel = 3
 ds = ds.coarsen(x=kernel, y=kernel, boundary="trim").mean()
 ```
 
 ```{code-cell} ipython3
-# | eval: false
+---
+tags: skip-execution
+---
+
 
 unwrapped = ...  # YOUR CODE HERE -> perform unwrapping function
 

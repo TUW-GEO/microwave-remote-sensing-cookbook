@@ -52,7 +52,9 @@ Tips:
 - Do not forget to use the `compute()` method (when you use the `sel` method) to finally load the result into memory.
 
 ```{code-cell} ipython3
-#| eval: false
+---
+tags: skip-execution
+---
 
 # YOUR CODE HERE ----------------------------------------------------------
 first = ...  # YOUR CODE HERE
@@ -75,7 +77,9 @@ $$
 We replaced the traditional maximum value with the 98th quantile in our normalization process to enhance robustness against outliers. Due to the nature of backscattering some sigma nought values get very high so taking the 98th quantile is important. The linear backscattering values are bounded by 0 so using for example the 2nd quantile is not necessary. After applying the formula, any values exceeding the 98th quantile will be greater than 1. We map these values to 1 to ensure they fit within our specified range."
 
 ```{code-cell} ipython3
-#| eval: false
+---
+tags: skip-execution
+---
 
 linear_ds = 10 ** (sig0_rgb_da / 10)
 
@@ -115,7 +119,9 @@ plt.tight_layout()
 Let´s first plot the three normalized images separately (Red = Oldest image, Green = Middle image, Blue = Newest image).
 
 ```{code-cell} ipython3
-#| eval: false
+---
+tags: skip-execution
+---
 
 fig, axes = plt.subplots(1, 3, figsize=(15, 5))
 
@@ -135,7 +141,9 @@ plt.tight_layout()
 And finally, let´s plot the RGB composite.
 
 ```{code-cell} ipython3
-#| eval: false
+---
+tags: skip-execution
+---
 
 fig, ax = plt.subplots(figsize=(8, 5))
 

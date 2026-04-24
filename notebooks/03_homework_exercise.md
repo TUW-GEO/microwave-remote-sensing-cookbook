@@ -28,11 +28,6 @@ from microwave_remote_sensing_cookbook.catalog import get_intake_url
 ```
 
 ```{code-cell} ipython3
----
-editable: true
-slideshow:
-  slide_type: ''
----
 url = get_intake_url()
 cat = intake.open_catalog(url)
 ex3_dc = cat["ex3"].read().compute()
@@ -77,7 +72,9 @@ Name all types of geometric radar image distortions in a SAR image. How are they
 Use the figure below question 1 to identify areas that are affected by foreshortening and radar shadows. Use the mouseover to retrieve their x/y coordinates. Then use these coordinates to annotate the following `matplotlib` figure with labels by putting them in the lines indicated with # Your coordinates here.
 
 ```{code-cell} ipython3
-#| eval: false
+---
+tags: skip-execution
+---
 
 zoom = ex3_dc.sel(x=slice(11.25, 11.5), y=slice(47.75, 47.5)).band_data
 fig, ax = plt.subplots(figsize=(10, 8))

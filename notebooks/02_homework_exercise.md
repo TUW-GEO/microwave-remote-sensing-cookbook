@@ -34,7 +34,9 @@ import rioxarray  # noqa
 ```
 
 ```{code-cell} ipython3
-#| eval: false
+---
+tags: skip-execution
+---
 
 # Search for some data
 crs = CRS.from_epsg(27704)  # WGS 84
@@ -68,7 +70,9 @@ print(len(items), "scenes found")
 ```
 
 ```{code-cell} ipython3
-#| eval: false
+---
+tags: skip-execution
+---
 
 # Load the data and lazily combine items
 sig0_dc = odc.stac.stac_load(
@@ -82,7 +86,9 @@ sig0_dc = odc.stac.stac_load(
 ## Preprocess the Data
 
 ```{code-cell} ipython3
-#| eval: false
+---
+tags: skip-execution
+---
 
 # Define the nodata value and scale factor
 nodata = -9999  # Sentinel-1 nodata value as defined by EODC
@@ -95,7 +101,9 @@ sig0 = ...  # YOUR CODE HERE
 ## Create Weekly Mosaics
 
 ```{code-cell} ipython3
-#| eval: false
+---
+tags: skip-execution
+---
 
 sig0_weekly = ...  # YOUR CODE HERE
 ```

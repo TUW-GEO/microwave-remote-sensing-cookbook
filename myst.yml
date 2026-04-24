@@ -6,7 +6,7 @@ extends:
 project:
   title: Microwave Remote Sensing Cookbook
   authors:
-    - name: npikall
+    - name: Pikall Nikolas
       affiliations:
         - institution: TU Wien
           department: TU Wien
@@ -14,11 +14,12 @@ project:
   edit_url: https://gitlab.tuwien.ac.at/cookbooks/private/microwave-remote-sensing-cookbook
 
   keywords:
-    -
+    - "remote sensing"
+    - "microwave"
 
   parts:
     language: Python
-    published: false
+    published: "false"
 
   open_access: true
   license:
@@ -34,9 +35,9 @@ project:
     - file: notebooks/02_in_class_exercise.ipynb
     - file: notebooks/03_in_class_exercise.ipynb
     - file: notebooks/04_in_class_exercise.ipynb
-    - file: notebooks/05_in_class_exercise.ipynb
-    - file: notebooks/06_in_class_exercise.ipynb
-    - file: notebooks/07_in_class_exercise.ipynb
+    # - file: notebooks/05_in_class_exercise.ipynb
+    # - file: notebooks/06_in_class_exercise.ipynb
+    # - file: notebooks/07_in_class_exercise.ipynb
     - file: notebooks/08_in_class_exercise.ipynb
     - file: notebooks/09_in_class_exercise.ipynb
     - title: Exercises

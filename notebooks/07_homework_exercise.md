@@ -6,9 +6,9 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.19.1
 kernelspec:
-  display_name: microwave-remote-sensing
+  display_name: Python 3
   language: python
-  name: microwave-remote-sensing
+  name: python3
 ---
 
 # Homework Exercise 7: Speckle Statistics

@@ -6,9 +6,9 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.19.1
 kernelspec:
-  display_name: microwave-remote-sensing
+  display_name: Python 3
   language: python
-  name: microwave-remote-sensing
+  name: python3
 ---
 
 # Homework Exercise 5: SAR Wavelength and Polarization
@@ -40,7 +40,7 @@ Note that in the literature, this formulation may also appear with the numerator
 First load again the same dataset.
 
 <div class="alert alert-block alert-info">
-<b>Tip:</b> The calculation of the cross-ratio refers to the linear domain 
+<b>Tip:</b> The calculation of the cross-ratio refers to the linear domain
 and therefore needs a conversion from dB to linear scale. Checkout Notebook 2 again for the conversion.
 </div>
 

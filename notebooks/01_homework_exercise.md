@@ -6,9 +6,8 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.19.1
 kernelspec:
-  display_name: microwave-remote-sensing
-  language: python
-  name: microwave-remote-sensing
+  display_name: Python 3
+  name: python3
 ---
 
 # Homework Exercise 1: Discover Sentinel 1 data using the EODC STAC catalog

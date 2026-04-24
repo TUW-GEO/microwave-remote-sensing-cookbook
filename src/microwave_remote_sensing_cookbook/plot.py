@@ -21,11 +21,15 @@ from holoviews.streams import RangeXY  # type: ignore[import-untyped]
 from matplotlib import patches
 from matplotlib.colors import Colormap, ListedColormap, Normalize
 from matplotlib.patches import Patch
-from mrs.catalog import CorineColorCollection, _CorineColorMapping
 from seaborn.palettes import _ColorPalette  # type: ignore[import-untyped]
 from xarray import DataArray, Dataset
 
-hv.extension("bokeh")  # type: ignore[too-many-positional-arguments]
+from microwave_remote_sensing_cookbook.catalog import (
+    CorineColorCollection,
+    _CorineColorMapping,
+)
+
+hv.extension("bokeh")  # ty: ignore[too-many-positional-arguments]
 COMPLETE_LAND_COVER = "\xa0\xa0\xa0 Complete Land Cover"
 LAND_COVER: dict[str, int] = {COMPLETE_LAND_COVER: 1}
 RANGEXY = RangeXY()

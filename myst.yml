@@ -1,0 +1,48 @@
+version: 1
+
+extends:
+  - https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-config/-/raw/main/tucooks.yml
+
+project:
+  title: Microwave Remote Sensing Cookbook
+  authors:
+    - name: npikall
+      affiliations:
+        - institution: TU Wien
+          department: TU Wien
+  source_url: https://gitlab.tuwien.ac.at/cookbooks/private/microwave-remote-sensing-cookbook
+  edit_url: https://gitlab.tuwien.ac.at/cookbooks/private/microwave-remote-sensing-cookbook
+
+  keywords:
+    - 
+
+  parts:
+    language: Python
+    published: false
+
+  open_access: true
+  license:
+    content: CC-BY-4.0
+    code: MIT
+
+  toc:
+    - file: README.md
+    - title: Preamble
+      children:
+        - file: notebooks/how-to-cite.md
+    - title: Content
+      children:
+        - file: notebooks/notebook-template.ipynb
+    - title: Developing
+      children:
+        - file: CONTRIBUTING.md
+  error_rules:
+    - rule: image-downloads
+      severity: ignore
+    - rule: image-format-converts
+      severity: ignore
+    - rule: link-resolves
+      severity: ignore
+      keys:
+        - https://hub.jaas.datalab.tuwien.ac.at
+        - "https://binder.cookbooks.datalab.tuwien.ac.at/**"

@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: npikall
+    given-names: npikall
+    orcid: ...
+title: "Microwave Remote Sensing Cookbook"
+version: 2.0.4
+identifiers:
+  - type: doi
+    value: ...
+date-released: 2026-04-24

@@ -1,0 +1,13 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 0.2.11
+_src_path: git+https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-python
+attribution: CC-BY-4.0
+author_department: TU Wien
+author_email: nikolas.pikall@gmail.com
+author_fullname: npikall
+keywords: ''
+legal_entity: TU Wien
+license: MIT
+project_description: The cookbook for the Microwave Remote Sensing Course
+project_name: Microwave Remote Sensing Cookbook
+use_license: true

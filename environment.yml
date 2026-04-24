@@ -1,0 +1,8 @@
+name: tucookbooks
+channels:
+  - conda-forge
+dependencies:
+  - uv
+  - python==3.12
+  - pip:
+      - .

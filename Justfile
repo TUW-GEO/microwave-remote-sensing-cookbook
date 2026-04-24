@@ -115,8 +115,8 @@ dist:
 
 # serve the documentation on localhost
 [group("dev")]
-docs: venv
-    yes | uv run myst start --execute
+docs *args="--execute": venv
+    yes | uv run myst start {{ args }}
 
 _ensure_clean:
     @git diff --quiet

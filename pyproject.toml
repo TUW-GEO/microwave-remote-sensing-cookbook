@@ -21,7 +21,9 @@ classifiers = [
   "Topic :: Software Development :: Libraries",
 ]
 dependencies = [
+  "aiohttp>=3.13.5",
   "cmcrameri>=1.9",
+  "datashader>=0.19",
   "folium>=0.20",
   "holoviews>=1.22.1",
   "hvplot>=0.12.2",
@@ -37,6 +39,7 @@ dependencies = [
   "pystac-client>=0.8.6",
   "python-gitlab>=8.2",
   "rasterio>=1.5",
+  "requests>=2.33.1",
   "rich>=15",
   "rioxarray>=0.22",
   "scipy>=1.17.1",
@@ -44,6 +47,7 @@ dependencies = [
   "shapely>=2.1.2",
   "snaphu>=0.4.1",
   "xarray>=2026.4",
+  "zarr<3",
 ]
 [project.optional-dependencies]
 book = [

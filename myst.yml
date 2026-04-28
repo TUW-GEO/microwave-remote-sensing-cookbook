@@ -36,8 +36,8 @@ project:
     - file: notebooks/03_in_class_exercise.ipynb
     - file: notebooks/04_in_class_exercise.ipynb
     - file: notebooks/05_in_class_exercise.ipynb
-    # - file: notebooks/06_in_class_exercise.ipynb
-    # - file: notebooks/07_in_class_exercise.ipynb
+    - file: notebooks/06_in_class_exercise.ipynb
+    - file: notebooks/07_in_class_exercise.ipynb
     - file: notebooks/08_in_class_exercise.ipynb
     - file: notebooks/09_in_class_exercise.ipynb
     - title: Exercises

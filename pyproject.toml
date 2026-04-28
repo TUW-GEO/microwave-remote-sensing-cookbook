@@ -8,7 +8,7 @@ version = "0.0.0"
 description = "The cookbook for the Microwave Remote Sensing Course"
 readme = "README.md"
 authors = [ { name = "npikall", email = "nikolas.pikall@gmail.com" } ]
-requires-python = ">=3.12"
+requires-python = ">=3.12,<3.14"
 classifiers = [
   "Intended Audience :: Science/Research",
   "Natural Language :: English",
@@ -16,7 +16,6 @@ classifiers = [
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
-  "Programming Language :: Python :: 3.14",
   "Topic :: Scientific/Engineering",
   "Topic :: Software Development :: Libraries",
 ]

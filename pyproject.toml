@@ -58,7 +58,13 @@ book = [
 ]
 
 [dependency-groups]
-dev = [ "pre-commit>=4.5", "ruff>=0.15.11", "ty>=0.0.31" ]
+dev = [
+  "nbmake>=1.5.5",
+  "prek>=0.3.11",
+  "pytest-xdist>=3.8",
+  "ruff>=0.15.11",
+  "ty>=0.0.31",
+]
 
 [tool.uv]
 [tool.uv.sources]
@@ -91,3 +97,6 @@ unfixable = []
 [tool.pyproject-fmt]
 table_format = "long"
 collapse_tables = [ "project.authors" ]
+
+[tool.pytest.ini_options]
+addopts = "--nbmake -n=auto"

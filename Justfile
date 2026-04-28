@@ -47,14 +47,13 @@ check arg="concise":
 # run the tests
 [group("test")]
 test *args:
-    uv run pytest tests/ {{ args }}
+    uv run pytest {{ args }}
 
 # run the tests in different Python versions
 [group("test")]
 testall *args:
-    uv run --python=3.10 pytest {{ args }}
     uv run --python=3.12 pytest {{ args }}
-    uv run --python=3.14 pytest {{ args }}
+    uv run --python=3.13 pytest {{ args }}
 
 # run the formatter, linter, typechecker and the tests
 [group("test")]
@@ -62,7 +61,7 @@ ci python="3.12":
     uv run --python={{ python }} ruff format .
     uv run --python={{ python }} ruff check . --fix
     uv run --python={{ python }} ty check .
-    uv run --python={{ python }} pytest tests/
+    uv run --python={{ python }} pytest
 
 # install the pre-commit hooks
 [group("dev")]

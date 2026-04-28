@@ -26,7 +26,7 @@ def suppress_output():  # noqa: ANN201
         Provides the context for the ``with`` statement; does not return a value.
 
     """
-    with Path.open(os.devnull, "w") as devnull:  # type: ignore[no-overload-matching]
+    with Path.open(os.devnull, "w") as devnull:  # ty:ignore[no-matching-overload]
         old_stdout = os.dup(1)
         old_stderr = os.dup(2)
 

@@ -149,7 +149,7 @@ def plot_corine_data(
         cmap=cmap,
         norm=norm,
         add_colorbar=False,
-    ).axes.set_aspect("equal")  # type: ignore[call-arg]
+    ).axes.set_aspect("equal")  # type: ignore[call-arg]  # ty:ignore[missing-argument]
 
     handles = _handles(color_mapping.items, present_landcover_codes)
     plt.legend(
@@ -540,7 +540,7 @@ def array_to_img(data_array: DataArray, cmap: ColorMapLike) -> str:
 
     """
     fig, ax = plt.subplots(figsize=(6, 6), dpi=600)
-    data_array.plot(ax=ax, cmap=cmap, add_colorbar=False, add_labels=False)  # type: ignore[call-arg]
+    data_array.plot(ax=ax, cmap=cmap, add_colorbar=False, add_labels=False)  # ty:ignore[missing-argument]
     ax.set_axis_off()
     buf = BytesIO()
     plt.savefig(buf, format="png", bbox_inches="tight", pad_inches=0, transparent=True)
@@ -861,7 +861,7 @@ def plot_displacement_map(
         subset.plot.imshow(
             cmap=cmap_disp,
             cbar_kwargs={"label": "Meters [m]"},
-        ).axes.set_title(title)
+        ).axes.set_title(title)  # ty:ignore[no-matching-overload]
     )
     plt.show()
 
@@ -946,7 +946,7 @@ def plot_summary(  # noqa: PLR0913
             cmap=cmap_disp,
             ax=ax[1],
             cbar_kwargs={"label": "Meters [m]"},
-        ).axes.set_title("Displacement Map of the Subset")
+        ).axes.set_title("Displacement Map of the Subset")  # ty:ignore[no-matching-overload]
     )
 
     (
@@ -961,7 +961,7 @@ def plot_summary(  # noqa: PLR0913
             cmap=cmap_disp,
             ax=ax[3],
             cbar_kwargs={"label": "Meters [m]"},
-        ).axes.set_title("Displacement Map entire scene (coarse resolution)")
+        ).axes.set_title("Displacement Map entire scene (coarse resolution)")  # ty:ignore[no-matching-overload]
     )
 
     plt.tight_layout()
@@ -1130,10 +1130,10 @@ def load_image_landcover(  # noqa: PLR0913
 def plot_variability(
     var_ds: Dataset,
     color_mapping: dict[int, _CorineColorMapping],
-    present_landcover_codes: list,
+    present_landcover_codes: npt.NDArray,
     filter_spatial: Callable[[npt.NDArray], npt.NDArray] | None = None,
-    filter_temporal: Callable[[Dataset], Dataset] | None = None,
-) -> hv.core.layout:
+    filter_temporal: Callable[[npt.NDArray], npt.NDArray] | None = None,
+) -> hv.core.Layout:
     """Create an interactive plot for backscatter data exploration.
 
     Generates a DynamicMap showing an image of backscatter values alongside
@@ -1180,7 +1180,7 @@ def plot_variability(
     rangexy = RangeXY()
 
     if filter_temporal is not None:
-        var_ds = filter_temporal(var_ds)
+        var_ds = filter_temporal(var_ds)  # ty:ignore[invalid-assignment, invalid-argument-type]
         load_image_landcover_ = partial(
             load_image_landcover,
             var_ds=var_ds,

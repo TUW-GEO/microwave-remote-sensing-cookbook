@@ -13,6 +13,16 @@ kernelspec:
 
 # Homework Exercise 4: Datacubes
 
+## Overview
+
+This homework exercise will test your understanding of:
+
+- Working with rasters in different projections and resolutions
+- Resampling and reprojection techniques
+- Temporal merging of datasets
+
+## Imports
+
 For the homework assignement we will continue work on the same data as in the in-class exercise. Hence we will load the same data which has been stored as a Zarr datastore. Zarr is efficient for storing chunked data and much faster for reading.
 
 ```{code-cell} ipython3
@@ -155,3 +165,12 @@ for var in to_store.variables:
     to_store[var].encoding.clear()
 to_store.to_zarr("fused_ds.zarr", mode="w")
 ```
+
+## Wrapping Up
+
+In this exercise, you practiced:
+
+- Extracting raster metadata and comparing projections
+- Reprojecting data between coordinate systems
+- Handling temporal differences between datasets
+- Using rioxarray for raster operations

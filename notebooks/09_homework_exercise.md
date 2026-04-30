@@ -13,6 +13,16 @@ kernelspec:
 
 # Homework Exercise 9: Phase Unwrapping Exercise
 
+## Overview
+
+This homework exercise will test your understanding of:
+
+- Phase unwrapping concepts and algorithms
+- Using unwrapped phase to derive displacement
+- Understanding the challenges in large displacement events
+## Imports
+
+
 Your task in this exercise is to read the provided data, plot it, unwrap and plot the phase, and calculate the displacement. Then interpret your results.
 The following data were acquired from Sentinel-1 on April 23, 2018, from 16:15:24 to 16:15:51 over the region of Hawaii (same data as 08_homework_exercise).
 
@@ -146,3 +156,12 @@ Can you guess which kind of phenomenon is responsible for the ground surface dis
 # YOUR CODE HERE -> perform displacement function
 # YOUR CODE HERE -> plot displacement map
 ```
+
+## Wrapping Up
+
+In this exercise, you explored:
+
+- The need for phase unwrapping in interferometry
+- Statistical approaches to unwrapping
+- Calculating LOS displacement from phase
+- Limitations of unwrapping in large deformation events

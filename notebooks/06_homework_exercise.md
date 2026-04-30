@@ -13,6 +13,16 @@ kernelspec:
 
 # Homework Exercise 6: Dielectric Properties of Natural Media
 
+## Overview
+
+This homework exercise will test your understanding of:
+
+- Analyzing backscatter variability across different land cover types
+- Using CORINE Land Cover data to classify regions
+- Understanding physical properties and their influence on backscatter
+## Imports
+
+
 ## RGB Composite
 
 Not only radar reflectivity vary according to different land cover classes. The backscattered signal also depends on the change of the imagined natural media over time. We may want to capture in one single image how different land covers comparably change across the same time range. A way to do achieve that is by generating a RGB composite. But what is a RGB composite? It all comes down to combining three image bands into one picture by setting each band as either Red, Green or Blue channel.
@@ -157,3 +167,12 @@ plt.tight_layout()
 
 What can you infer about the landscape features (focus on the crops appearance, forested areas, water bodies, urban areas) based on the variations in color across the image? Describe how you might interpret the colors in terms of changes over time, surface properties, and dielectric properties of the natural and artificial media.
 Focus on the crops: keeping in mind the polarization of the visualized backscatter data (i.e., VV) and its sensitivity to smoother surfaces (which indicates lack of vegetation), what does the blue color represent?
+
+## Wrapping Up
+
+In this exercise, you investigated:
+
+- Backscatter signatures of various land cover types
+- Using land cover classifications for SAR analysis
+- How physical properties like dielectric affect backscatter
+- Temporal variability in different land surfaces

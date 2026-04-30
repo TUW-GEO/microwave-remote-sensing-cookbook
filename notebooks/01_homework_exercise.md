@@ -13,6 +13,7 @@ kernelspec:
 # Homework Exercise 1: Discover Sentinel 1 data using the EODC STAC catalog
 
 +++
+## Overview
 
 In the previous notebook, you have learnt how to access Sentinel-1 data from EODC using the STAC API. Your task now is to find and plot a Sentinel-1 acquisition of your latest holiday destination. To successfully finish the exercise, you need to perform the following tasks:
 
@@ -22,6 +23,8 @@ In the previous notebook, you have learnt how to access Sentinel-1 data from EOD
 - [ ] Check the metadata to find the relative orbit number of the item
 - [ ] Read and decode the items
 - [ ] Plot one of the items
+
+## Imports
 
 To help you to get started, we already imported all required packages and provided some code blocks. Your task is now to fill in the missing code cells indicated with # YOUR CODE HERE.
 
@@ -120,3 +123,14 @@ tags: skip-execution
 
 ...  # YOUR CODE HERE
 ```
+
+## Wrapping Up
+
+In this exercise, you practiced:
+
+- Connecting to a STAC catalog and retrieving the Sentinel-1 collection
+- Defining search parameters for your specific location and time period
+- Extracting metadata items from search results
+- Loading backscatter data into a lazily-evaluated xarray DataArray
+- Applying proper scaling and NoData handling
+- Visualizing SAR data with geospatial context

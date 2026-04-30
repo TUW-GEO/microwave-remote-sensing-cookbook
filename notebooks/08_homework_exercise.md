@@ -79,6 +79,16 @@ coh_plot = coh_da.hvplot.image(
 
 +++
 
+## Overview
+
+This homework exercise will test your understanding of:
+
+- The difference between SLC and GRD products
+- Coregistration techniques for interferometry
+- Creating and interpreting interferograms
+## Imports
+
+
 Please refer to the above plots. Which of the following statements are correct?
 
 - [ ] The image on the left shows a phase interferogram.
@@ -174,3 +184,12 @@ Please refer to the above plot, select the "Coherence Data" layer, and select th
 - [ ] The coherence is low (dark color) over forested areas.
 - [ ] The coherence is high over bare soil (non-forested areas).
 - [ ] High coherence is typically seen in areas affected by high rates of change in surface structure, moisture and vegetation.
+
+## Wrapping Up
+
+In this exercise, you practiced:
+
+- Working with complex-valued SLC data
+- Understanding the interferometry processing chain
+- Interpreting phase coherence and interferograms
+- Basic InSAR processing steps

@@ -30,6 +30,16 @@ from microwave_remote_sensing_cookbook.catalog import get_intake_url
 
 +++
 
+## Overview
+
+This homework exercise will test your understanding of:
+
+- Why speckle occurs in SAR imagery
+- Different filtering approaches applied to SAR imagery
+- How speckle can help characterize physical properties
+## Imports
+
+
 We will use already known data, which consists of Sentinel-1 **sigma naught** $\sigma^0$ images focusing on Lake Neusiedl and the surrounding area, where the CORINE land cover is used for land cover-based visualization and analysis.
 
 ```{code-cell} ipython3
@@ -102,3 +112,12 @@ Based on your plotted results, select which of the below statement is correct:
 - [ ] To preserve the temporal resolution of an image, speckle should not be removed.
 - [ ] The larger the kernel size, the more speckle noise is removed.
 - [ ] A temporal filtering approach is generally preferable to a purely spatial filtering approach for speckle reduction, even when surface changes are evident across temporal observations of the same scene.
+
+## Wrapping Up
+
+In this exercise, you learned:
+
+- The origin of speckle in radar interference
+- Spatial vs temporal filtering techniques
+- Trade-offs in speckle reduction methods
+- How speckle relates to target properties

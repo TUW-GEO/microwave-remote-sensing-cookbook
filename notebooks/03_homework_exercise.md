@@ -13,7 +13,11 @@ kernelspec:
 
 # Homework Exercise 3: Backscattering Coefficients
 
+## Overview
+
 To successfully finish this notebook, you have to answer/solve the following three questions.
+
+## Imports
 
 ```{code-cell} ipython3
 import xarray as xr
@@ -100,3 +104,12 @@ ax.annotate(
 
 zoom.sel(band="unknown1").plot(robust=True, cmap="Greys_r")
 ```
+
+## Wrapping Up
+
+In this exercise, you learned:
+
+- The processing steps from GRD to terrain-corrected backscatter
+- Identifying geometric distortions like foreshortening in SAR imagery
+- Understanding the differences between backscatter coefficients
+- The impact of terrain correction on backscatter values

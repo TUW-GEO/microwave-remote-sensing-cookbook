@@ -14,6 +14,7 @@ kernelspec:
 # Homework Exercise 2: Unit conversion
 
 +++
+## Overview
 
 Your task in this notebook is to load some data from `EODC` and create weekly mosaics across the whole year (the area can be relatively small), plot one of the weekly mosaics, and save it to a file. To successfully finish the exercise, you need to perform the following tasks:
 
@@ -24,7 +25,7 @@ Your task in this notebook is to load some data from `EODC` and create weekly mo
 
 As a reminder, backscatter data is typically provided in 'dB', so make sure to perform the mean calculation for the weekly mosaics in the correct domain.
 
-## Load the data
+## Imports
 
 ```{code-cell} ipython3
 import pystac_client
@@ -32,6 +33,8 @@ import odc.stac
 from rasterio.crs import CRS
 import rioxarray  # noqa
 ```
+
+## Load the data
 
 ```{code-cell} ipython3
 ---
@@ -119,3 +122,12 @@ sig0_weekly = ...  # YOUR CODE HERE
 ```{code-cell} ipython3
 # YOUR CODE HERE
 ```
+
+## Wrapping Up
+
+In this exercise, you practiced:
+
+- Understanding why dB scale is preferred for visualization
+- Converting between dB and linear domains
+- Implementing the inverse transformations
+- Understanding when mathematical operations require the correct scale

@@ -13,6 +13,16 @@ kernelspec:
 
 # Homework Exercise 5: SAR Wavelength and Polarization
 
+## Overview
+
+This homework exercise will test your understanding of:
+
+- Backscatter differences between C-band and L-band
+- Co-polarization (VV, HH) vs cross-polarization (VH, HV)
+- Using auxiliary data like NDVI to analyze backscatter patterns
+## Imports
+
+
 We have seen that cross- and co-polarized signals for Sentinel-1 and ALOS-2 seem to be dependent on the type of vegetation. Let's have a closer look at this.
 
 ```{code-cell} ipython3
@@ -179,3 +189,12 @@ ax[1].set_ylabel(r"$\text{CR}$ [$m^2 \cdot m^{-2}$]")
 _Figure 2: Boxplot for CR of Sentinel-1 and ALOS-2 for binned LAI values_
 
 Analyse the boxplot above. Based on what you see in the plot, can you tell whether the L-band or the C-band sensor have different sensibilities with regards to changes in vegetation? Can you also tell to what type of vegetation each satellite-sensor is most sensitive to? Explain your reasoning in detail.
+
+## Wrapping Up
+
+In this exercise, you explored:
+
+- Comparing backscatter signatures across different microwave frequencies
+- Understanding polarization effects on backscatter
+- Using indices like NDVI to relate backscatter to vegetation
+- Analyzing seasonal patterns in multi-frequency SAR data

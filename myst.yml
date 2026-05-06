@@ -6,10 +6,34 @@ extends:
 project:
   title: Microwave Remote Sensing Cookbook
   authors:
-    - name: Pikall Nikolas
+    - name: Wolfgang Wagner
       affiliations:
         - institution: TU Wien
-          department: TU Wien
+          department: Research Unit of Remote Sensing
+    - name: Martin Schobben
+      affiliations:
+        - institution: TU Wien
+          department: Research Unit of Remote Sensing
+    - name: Nikolas Pikall
+      affiliations:
+        - institution: TU Wien
+          department: Research Unit of Remote Sensing
+    - name: Joseph Wagner
+      affiliations:
+        - institution: TU Wien
+          department: Research Unit of Remote Sensing
+    - name: Davide Festa
+      affiliations:
+        - institution: TU Wien
+          department: Research Unit of Remote Sensing
+    - name: Felix David Reuß
+      affiliations:
+        - institution: TU Wien
+          department: Research Unit of Remote Sensing
+    - name: Luka Jović
+      affiliations:
+        - institution: TU Wien
+          department: Research Unit of Remote Sensing
   source_url: https://gitlab.tuwien.ac.at/cookbooks/private/microwave-remote-sensing-cookbook
   edit_url: https://gitlab.tuwien.ac.at/cookbooks/private/microwave-remote-sensing-cookbook
 
@@ -31,6 +55,7 @@ project:
     - title: Preamble
       children:
         - file: notebooks/how-to-cite.md
+        - file: notebooks/prerequisites.md
     - file: notebooks/01_in_class_exercise.ipynb
     - file: notebooks/02_in_class_exercise.ipynb
     - file: notebooks/03_in_class_exercise.ipynb

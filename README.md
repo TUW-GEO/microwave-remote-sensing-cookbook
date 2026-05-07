@@ -3,7 +3,7 @@
 :align: left
 ```
 
-# TU Cookbook - Microwave Remote Sensing Cookbook
+# Microwave Remote Sensing Cookbook
 
 [![nightly-build](https://gitlab.tuwien.ac.at/cookbooks/private/microwave_remote_sensing_cookbook/badges/main/pipeline.svg?key_text=nightly&key_width=50)](https://gitlab.tuwien.ac.at/cookbooks/templates/microwave_remote_sensing_cookbook//-/commits/main)
 [![Binder](https://binder.cookbooks.datalab.tuwien.ac.at/badge_logo.svg)](https://binder.cookbooks.datalab.tuwien.ac.at/v2/gl/cookbooks%2Fprivate%2Fmicrowave_remote_sensing_cookbook/HEAD)

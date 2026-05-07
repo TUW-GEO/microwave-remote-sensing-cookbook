@@ -6,8 +6,8 @@
 
 [![nightly-build](https://gitlab.tuwien.ac.at/cookbooks/private/microwave_remote_sensing_cookbook/badges/main/pipeline.svg?key_text=nightly&key_width=50)](https://gitlab.tuwien.ac.at/cookbooks/templates/microwave_remote_sensing_cookbook//-/commits/main)
 [![Binder](https://binder.cookbooks.datalab.tuwien.ac.at/badge_logo.svg)](https://binder.cookbooks.datalab.tuwien.ac.at/v2/gl/cookbooks%2Fprivate%2Fmicrowave_remote_sensing_cookbook/HEAD)
-
-This TU Cookbook provides comprehensive, interactive notebooks for learning microwave remote sensing with Synthetic Aperture Radar (SAR) data. Designed for university courses on Microwave Remote Sensing, it guides students through the complete workflow of SAR data processing—from data discovery and preprocessing to advanced analysis techniques like interferometry and phase unwrapping.
+This TU Cookbook provides the hand-outs and exercises of the Master course **Microwave Remote Sensing (120.030)** at the TU Wien.
+It guides students through the complete workflow of SAR data processing, from data discovery and preprocessing to advanced analysis techniques like interferometry and phase unwrapping.
 
 The notebooks use real-world data from Sentinel-1 and ALOS-2 satellites, covering both C-band and L-band SAR systems. Students will gain hands-on experience with Python libraries for geospatial analysis, including pystac for data discovery, xarray for multi-dimensional array handling, and specialized tools for SAR processing.
 
@@ -16,6 +16,7 @@ The notebooks use real-world data from Sentinel-1 and ALOS-2 satellites, coverin
 Microwave remote sensing is an essential tool for Earth observation, providing全天候 monitoring capabilities and unique insights into surface properties, vegetation structure, soil moisture, and ground deformation. This cookbook was developed to bridge the gap between theoretical knowledge and practical application of SAR processing techniques.
 
 The materials are designed to help students develop practical skills in SAR data analysis, enabling them to work independently with complex remote sensing data and apply these techniques to real-world research questions in fields such as:
+
 - Land cover and land use mapping
 - Vegetation monitoring and agricultural applications
 - Surface deformation and natural hazard monitoring
@@ -79,6 +80,7 @@ need to follow this workflow:
    ```
 
 2. Move into the `microwave_remote_sensing_cookbook` directory
+
    ```bash
    cd microwave_remote_sensing_cookbook
    ```
@@ -92,25 +94,31 @@ need to follow this workflow:
 #### uv
 
 Create and activate your virtual environment
-   ```bash
-   uv sync --all-extras
-   ```
+
+```bash
+uv sync --all-extras
+```
+
 Start up Jupyterlab Server in the notebooks directory
-   ```bash
-   uv run jupyter lab notebooks/
-   ```
+
+```bash
+uv run jupyter lab notebooks/
+```
 
 #### Conda
 
 Create and activate your conda environment from the `environment.yml` file
-   ```bash
-   conda env create -f environment.yml
-   conda activate tucookbooks
-   ```
+
+```bash
+conda env create -f environment.yml
+conda activate tucookbooks
+```
+
 Move into the `notebooks` directory and start up Jupyterlab
-   ```bash
-   jupyter lab notebooks/
-   ```
+
+```bash
+jupyter lab notebooks/
+```
 
 #### Docker
 
@@ -121,6 +129,7 @@ When available simply run `docker compose` to start a Jupyter Lab instance.
    ```bash
    docker compose up
    ```
+
 2. Copy Jupyter Lab URL to web browser:
 
 Stop and remove the container

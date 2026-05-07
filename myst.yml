@@ -38,7 +38,7 @@ project:
           department: Research Unit of Remote Sensing
   source_url: https://gitlab.tuwien.ac.at/cookbooks/private/microwave-remote-sensing-cookbook
   edit_url: https://gitlab.tuwien.ac.at/cookbooks/private/microwave-remote-sensing-cookbook
-  thumbnail: https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-config/-/raw/main/logos/TU_Logo.png
+  thumbnail: https://gitlab.tuwien.ac.at/cookbooks/data/microwave-remote-sensing-cookbook/-/raw/main/interferrogram.png
 
   keywords:
     - "remote sensing"

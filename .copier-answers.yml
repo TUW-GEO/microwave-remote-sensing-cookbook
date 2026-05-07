@@ -1,5 +1,5 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: 0.2.11
+_commit: 0.2.12
 _src_path: git+https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-python
 attribution: CC-BY-4.0
 author_department: TU Wien

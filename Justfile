@@ -156,3 +156,8 @@ release target: test
     @just changelog
     @just _commit_and_tag
     @echo "{{ GREEN }}Release complete. Run 'git push && git push --tags'.{{ NORMAL }}"
+
+# create a new notbook from a template
+[group("chore")]
+new *args:
+    uv run tu-cookbook new {{ args }}

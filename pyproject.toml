@@ -60,14 +60,15 @@ book = [
 [dependency-groups]
 dev = [
   "nbmake>=1.5.5",
-  "prek>=0.3.11",
+  "pre-commit>=4.6",
   "pytest-xdist>=3.8",
-  "ruff>=0.15.11",
-  "ty>=0.0.31",
+  "ruff>=0.15.12",
+  "tu-cookbook-python",
+  "ty>=0.0.33",
 ]
 
-[tool.uv]
 [tool.uv.sources]
+tu-cookbook-python = { git = "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-python.git" }
 turecipe = { git = "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci.git" }
 
 [tool.ruff]

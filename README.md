@@ -1,7 +1,6 @@
-```{image} https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-config/-/raw/main/logos/TU_Logo.png
-:width: 50%
-:align: left
-```
+<img src="https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-config/-/raw/main/logos/TU_Logo.png" width="50%" />
+
+<br/>
 
 # Microwave Remote Sensing Cookbook
 

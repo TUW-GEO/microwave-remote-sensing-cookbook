@@ -11,7 +11,7 @@ description = """\
   and analyze Synthetic Aperture Radar (SAR) data. This will aid \
   interpretation of SAR data based upon a physical understanding of \
   sensing principles and the interaction of microwaves with natural \
-  objects.
+  objects. \
   """
 readme = "README.md"
 authors = [ { name = "npikall", email = "nikolas.pikall@gmail.com" } ]

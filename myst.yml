@@ -6,7 +6,11 @@ extends:
 project:
   title: Microwave Remote Sensing Cookbook
   description: |
-    The cookbook for the Microwave Remote Sensing Course
+    This cookbook accompanies the TU Wien MSc course "Microwave Remote Sensing
+    Exercises". In this course students learn to read, visualize and analyze
+    Synthetic Aperture Radar (SAR) data. This will aid interpretation of SAR
+    data based upon a physical understanding of sensing principles and the
+    interaction of microwaves with natural objects.
   authors:
     - name: Wolfgang Wagner
       affiliations:

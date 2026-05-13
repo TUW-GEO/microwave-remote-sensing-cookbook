@@ -3408,7 +3408,7 @@ wheels = [
 [[package]]
 name = "tu-cookbook-python"
 version = "0.2.12"
-source = { git = "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-python.git#c11c44ea12b40924bf4ce33151a9421c0a8e11f5" }
+source = { git = "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-python.git#57ed71ddd390368e2d8177b32aebf0c5cb3f7a66" }
 dependencies = [
     { name = "rich" },
 ]

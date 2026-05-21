@@ -1,5 +1,5 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: 0.2.12
+_commit: 0.2.15
 _src_path: git+https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-python
 attribution: CC-BY-4.0
 author_department: TU Wien
@@ -8,11 +8,18 @@ author_fullname: npikall
 keywords: ''
 legal_entity: TU Wien
 license: MIT
-project_description: |
-  This cookbook accompanies the TU Wien MSc course "Microwave Remote Sensing
-  Exercises". In this course students learn to read, visualize and analyze
-  Synthetic Aperture Radar (SAR) data. This will aid interpretation of SAR
-  data based upon a physical understanding of sensing principles and the
-  interaction of microwaves with natural objects.
+project_description: 'This cookbook accompanies the TU Wien MSc course "Microwave
+    Remote Sensing
+
+    Exercises". In this course students learn to read, visualize and analyze
+
+    Synthetic Aperture Radar (SAR) data. This will aid interpretation of SAR
+
+    data based upon a physical understanding of sensing principles and the
+
+    interaction of microwaves with natural objects.
+
+    '
+project_directory: microwave-remote-sensing-cookbook
 project_name: Microwave Remote Sensing Cookbook
 use_license: true

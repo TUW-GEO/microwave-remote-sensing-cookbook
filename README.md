@@ -1,10 +1,8 @@
-<img src="https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-config/-/raw/main/logos/TU_Logo.png" width="50%" />
-
-<br/>
-
 # Microwave Remote Sensing Cookbook
 
-[![nightly-build](https://gitlab.tuwien.ac.at/cookbooks/private/microwave-remote-sensing-cookbook/badges/main/pipeline.svg?key_text=nightly&key_width=50)](https://gitlab.tuwien.ac.at/cookbooks/private/microwave-remote-sensing-cookbook/-/commits/main)
+<img src="https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-config/-/raw/main/logos/TU_Logo.png" width="50%" />
+
+[![Binder](https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-config/-/raw/main/logos/binder_badge.svg)](https://binder.cookbooks.datalab.tuwien.ac.at/v2/gl/cookbooks%2Fprivate%2Fmicrowave-remote-sensing-cookbook/HEAD)
 
 [![Binder](https://binder.cookbooks.datalab.tuwien.ac.at/badge_logo.svg)](https://binder.cookbooks.datalab.tuwien.ac.at/v2/gl/cookbooks%2Fprivate%2Fmicrowave-remote-sensing-cookbook/HEAD?urlpath=%2Fdoc%2Ftree%2Fnotebooks%2FREADME.md)
 
@@ -47,11 +45,9 @@ Each notebook includes executable code cells, explanatory text, interactive visu
 
 ## Running the Notebooks
 
-### Running on dataLAB JupyterHub
+### Running on TU Cookbooks Binder
 
-Go to the website dataLAB: https://hub.jaas.datalab.tuwien.ac.at
-
-### Running on dataLAB Binder
+Go to TU Cookbooks Binder: https://binder.cookbooks.datalab.tuwien.ac.at/
 
 ### Running on Your Own Machine
 

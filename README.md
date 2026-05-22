@@ -2,7 +2,7 @@
 
 <img src="https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-config/-/raw/main/logos/TU_Logo.png" width="50%" />
 
-[![Binder](https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-config/-/raw/main/logos/binder_badge.svg)](https://binder.cookbooks.datalab.tuwien.ac.at/v2/gl/cookbooks%2Fprivate%2Fmicrowave-remote-sensing-cookbook/HEAD?urlpath=%2Fdoc%2Ftree%2FREADME.md)
+[![Binder](https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-config/-/raw/main/logos/binder_badge.svg)](https://binder.cookbooks.datalab.tuwien.ac.at/v2/gl/cookbooks%2Fprivate%2Fmicrowave-remote-sensing-cookbook/HEAD)
 
 This TU Cookbook provides the hand-outs and exercises of the Master course **Microwave Remote Sensing (120.030)** at the TU Wien.
 It guides students through the complete workflow of SAR data processing, from data discovery and preprocessing to advanced analysis techniques like interferometry and phase unwrapping.

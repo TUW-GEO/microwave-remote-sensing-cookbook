@@ -1,5 +1,5 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: 0.2.15
+_commit: 0.2.16
 _src_path: git+https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-python
 attribution: CC-BY-4.0
 author_department: TU Wien
@@ -20,6 +20,5 @@ project_description: 'This cookbook accompanies the TU Wien MSc course "Microwav
     interaction of microwaves with natural objects.
 
     '
-project_directory: microwave-remote-sensing-cookbook
 project_name: Microwave Remote Sensing Cookbook
 use_license: true

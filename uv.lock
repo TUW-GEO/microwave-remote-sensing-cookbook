@@ -1665,7 +1665,7 @@ requires-dist = [
     { name = "hvplot", specifier = ">=0.12.2" },
     { name = "intake", specifier = ">=2.0.9" },
     { name = "jupyter", marker = "extra == 'book'", specifier = ">=1.1.1" },
-    { name = "jupyterlab-myst", marker = "extra == 'book'", specifier = ">=2.6.0" },
+    { name = "jupyterlab-myst", marker = "extra == 'book'", specifier = ">=2.6" },
     { name = "matplotlib", specifier = ">=3.10.9" },
     { name = "mystmd", marker = "extra == 'book'", specifier = ">=1.8.3" },
     { name = "numpy", specifier = ">=2.4.4" },
@@ -1685,7 +1685,7 @@ requires-dist = [
     { name = "seaborn", specifier = ">=0.13.2" },
     { name = "shapely", specifier = ">=2.1.2" },
     { name = "snaphu", specifier = ">=0.4.1" },
-    { name = "turecipe", marker = "extra == 'book'", git = "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci.git" },
+    { name = "turecipe", marker = "extra == 'book'", git = "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci.git?branch=ch%2Fdev" },
     { name = "xarray", specifier = ">=2026.4" },
     { name = "zarr", specifier = "<3" },
 ]
@@ -3414,7 +3414,7 @@ dependencies = [
 [[package]]
 name = "turecipe"
 version = "0.0.1"
-source = { git = "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci.git#44ca47c16cb9cdc3ff4865448760fc39748ffb19" }
+source = { git = "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci.git?branch=ch%2Fdev#a513289444c0afcf42f70d17697bdfc89a8fab90" }
 dependencies = [
     { name = "nbformat" },
     { name = "requests" },

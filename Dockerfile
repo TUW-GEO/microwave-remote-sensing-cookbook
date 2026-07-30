@@ -14,3 +14,11 @@ COPY --chown=1000:1000 .. /home/jovyan/microwave_remote_sensing_cookbook
 WORKDIR /home/jovyan/microwave_remote_sensing_cookbook
 
 RUN uv pip install .[book] ruff ty --system
+
+# Badges live in source for the repo browser + Pages site, but must not appear
+# inside the Binder image. turecipe (a [book] extra dependency) provides both
+# console scripts. badgeclean strips [![Binder](...)](...) from README +
+# notebooks; prune-for-binder drops everything the image does not need to run
+# notebooks (allowlist: notebooks/, src/, images/, pyproject.toml,
+# environment.yml, myst.yml).
+RUN badgeclean && prune-for-binder

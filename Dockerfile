@@ -13,7 +13,8 @@ USER ${NB_UID}
 COPY --chown=1000:1000 .. /home/jovyan/microwave_remote_sensing_cookbook
 WORKDIR /home/jovyan/microwave_remote_sensing_cookbook
 
-RUN uv pip install .[book] ruff ty --system
+RUN uv export --format requirements.txt --extra book --group dev > requirements.txt
+RUN uv pip install -r requirements.txt --system
 
 # Badges live in source for the repo browser + Pages site, but must not appear
 # inside the Binder image. turecipe (a [book] extra dependency) provides both

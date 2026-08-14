@@ -5,7 +5,7 @@ stages:
   - quality
 
 include:
-  - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/main/environment/repo2docker.yml"
+  - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/np/chore-update-uv-image/environment/repo2docker.yml"
   - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/main/build/build.yml"
   - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/main/publish/pages.yml"
-  - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/main/test/code-quality.yml"
+  - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/13-extend-code-quality-ci-pipeline/test/code-quality.yml"

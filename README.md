@@ -7,11 +7,7 @@
 This TU Cookbook provides the hand-outs and exercises of the Master course **Microwave Remote Sensing (120.030)** at the TU Wien.
 It guides students through the complete workflow of SAR data processing, from data discovery and preprocessing to advanced analysis techniques like interferometry and phase unwrapping.
 
-The notebooks use real-world data from Sentinel-1 and ALOS-2 satellites, covering both C-band and L-band SAR systems. Students will gain hands-on experience with Python libraries for geospatial analysis, including pystac for data discovery, xarray for multi-dimensional array handling, and specialized tools for SAR processing.
-
 ## Motivation
-
-Microwave remote sensing is an essential tool for Earth observation, providing monitoring capabilities and unique insights into surface properties, vegetation structure, soil moisture, and ground deformation. This cookbook was developed to bridge the gap between theoretical knowledge and practical application of SAR processing techniques.
 
 The materials are designed to help students develop practical skills in SAR data analysis, enabling them to work independently with complex remote sensing data and apply these techniques to real-world research questions in fields such as:
 
@@ -45,7 +41,7 @@ Each notebook includes executable code cells, explanatory text, interactive visu
 
 ### Running on TU Cookbooks Binder
 
-Go to TU Cookbooks Binder: https://binder.cookbooks.datalab.tuwien.ac.at/
+Go to TU Cookbooks Binder: <https://binder.cookbooks.datalab.tuwien.ac.at/>
 
 ### Running on Your Own Machine
 

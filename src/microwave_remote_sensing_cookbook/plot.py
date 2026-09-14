@@ -393,7 +393,7 @@ def plot_coregistering(coregistered_ds: Dataset | _DatasetHasBandData) -> None:
     plt.tight_layout()
 
 
-def plot_interferogram(interferogram_ds: Dataset | _DatasetHasBandData) -> hv.Layout:
+def plot_interferogram(interferogram_ds: Dataset | _DatasetHasBandData) -> None:
     """Plot interferogram and coherence data side-by-side.
 
     Parameters
@@ -404,38 +404,24 @@ def plot_interferogram(interferogram_ds: Dataset | _DatasetHasBandData) -> hv.La
 
     Returns
     -------
-    hv.Layout
-        HoloViews layout with interferogram (left) and coherence (right) plots.
-        Y-axis is inverted for both plots, and axes are shared.
+    None
+        Displays a matplotlib figure with interferogram (left) and
+        coherence (right) plots.
 
     """
     interferogram_ds = interferogram_ds.where(interferogram_ds != 0)
     igf_da = interferogram_ds.sel(band=1).band_data
     coh_da = interferogram_ds.sel(band=2).band_data
 
-    # Invert y axis
-    igf_da["y"] = igf_da.y[::-1]
-    coh_da["y"] = coh_da.y[::-1]
+    _fig, axes = plt.subplots(1, 2, figsize=(18, 5))
 
-    igf_plot = igf_da.hvplot.image(
-        x="x",
-        y="y",
-        cmap=CMAP_HLS_HEX,
-        width=600,
-        height=600,
-        dynamic=False,
-    )
+    igf_da.plot.imshow(ax=axes[0], cmap=CMAP_HLS)
+    axes[0].set_title("Interferogram")
 
-    coh_plot = coh_da.hvplot.image(
-        x="x",
-        y="y",
-        cmap="viridis",
-        width=600,
-        height=600,
-        dynamic=False,
-    ).opts(clim=(0, 1))
+    coh_da.plot.imshow(ax=axes[1], cmap="viridis", vmin=0, vmax=1)
+    axes[1].set_title("Coherence")
 
-    return (igf_plot + coh_plot).opts(shared_axes=True)
+    plt.tight_layout()
 
 
 def plot_topographic_phase_removal(
@@ -476,7 +462,7 @@ def plot_topographic_phase_removal(
     plt.tight_layout()
 
 
-def plot_igf_coh(geocoded_ds: Dataset | _DatasetHasBandData, step: int) -> hv.Layout:
+def plot_igf_coh(geocoded_ds: Dataset | _DatasetHasBandData, step: int) -> None:
     """Plot downsampled interferogram and coherence data.
 
     Parameters
@@ -489,38 +475,32 @@ def plot_igf_coh(geocoded_ds: Dataset | _DatasetHasBandData, step: int) -> hv.La
 
     Returns
     -------
-    hv.Layout
-        HoloViews layout with downsampled interferogram (left) and coherence (right)
-        plots. Coherence plot is scaled between 0 and 1, and axes are shared.
+    None
+        Displays a matplotlib figure with downsampled interferogram (left)
+        and coherence (right) plots. Coherence plot is scaled between 0 and 1.
 
     """
     geocoded_ds = geocoded_ds.where(geocoded_ds != 0)
-    igf_data = geocoded_ds.sel(band=1).band_data
-    coh_da = geocoded_ds.sel(band=2).band_data
-
-    igf_plot = igf_data.isel(x=slice(0, -1, step), y=slice(0, -1, step)).hvplot.image(
-        x="x",
-        y="y",
-        cmap=CMAP_HLS_HEX,
-        width=600,
-        height=600,
-        dynamic=False,
+    igf_data = geocoded_ds.sel(band=1).band_data.isel(
+        x=slice(0, -1, step),
+        y=slice(0, -1, step),
+    )
+    coh_da = geocoded_ds.sel(band=2).band_data.isel(
+        x=slice(0, -1, step),
+        y=slice(0, -1, step),
     )
 
-    coh_plot = (
-        coh_da.isel(x=slice(0, -1, step), y=slice(0, -1, step))
-        .hvplot.image(
-            x="x",
-            y="y",
-            cmap="viridis",
-            width=600,
-            height=600,
-            dynamic=False,
-        )
-        .opts(clim=(0, 1))
-    )
+    _fig, axes = plt.subplots(1, 2, figsize=(12, 6))
 
-    return (igf_plot + coh_plot).opts(shared_axes=True)
+    igf_data.plot.imshow(ax=axes[0], cmap=CMAP_HLS)
+    axes[0].set_title("Interferogram")
+    axes[0].set_aspect("equal")
+
+    coh_da.plot.imshow(ax=axes[1], cmap="viridis", vmin=0, vmax=1)
+    axes[1].set_title("Coherence")
+    axes[1].set_aspect("equal")
+
+    plt.tight_layout()
 
 
 def array_to_img(data_array: DataArray, cmap: ColorMapLike) -> str:
@@ -539,7 +519,7 @@ def array_to_img(data_array: DataArray, cmap: ColorMapLike) -> str:
         Base64-encoded string of the PNG image.
 
     """
-    fig, ax = plt.subplots(figsize=(6, 6), dpi=600)
+    fig, ax = plt.subplots(figsize=(6, 6))
     data_array.plot(ax=ax, cmap=cmap, add_colorbar=False, add_labels=False)  # ty:ignore[missing-argument]
     ax.set_axis_off()
     buf = BytesIO()

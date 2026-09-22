@@ -15,17 +15,37 @@ build:
     - python -c "import socket as s; h='s3.garage.staging.jaas.datalab.tuwien.ac.at'; print('DNS', s.gethostbyname(h)); c=s.create_connection((h, 443), timeout=10); c.close(); print('TCP-OK')" || echo probe-dns-or-tcp-failed
     - |
       python - <<'PY'
-      import os, s3fs
-      try:
+      import os, socket, ssl, time, urllib.request, urllib.error, s3fs
+      H = 's3.garage.staging.jaas.datalab.tuwien.ac.at'
+      def step(name, fn):
+          t = time.time()
+          try:
+              r = fn()
+              print(name, '-OK', r, round(time.time() - t, 2), 's')
+          except Exception as e:
+              print(name, '-FAIL', type(e).__name__, e)
+      def tls():
+          ctx = ssl.create_default_context()
+          with socket.create_connection((H, 443), timeout=10) as s, ctx.wrap_socket(s, server_hostname=H) as tls_s:
+              return tls_s.version()
+      def http():
+          req = urllib.request.Request('https://%s/' % H, headers={'User-Agent': 'probe'})
+          try:
+              return urllib.request.urlopen(req, timeout=15).status
+          except urllib.error.HTTPError as e:
+              return e.code
+      def bucket():
           fs = s3fs.S3FileSystem(
               key=os.environ['AWS_ACCESS_KEY_ID'],
               secret=os.environ['AWS_SECRET_ACCESS_KEY'],
-              endpoint_url='https://s3.garage.staging.jaas.datalab.tuwien.ac.at',
+              endpoint_url='https://' + H,
               client_kwargs={'region_name': 'garage'},
           )
-          b = fs.cat('cookbook-microwave-remote-sensing/complex_handout.zarr/.zmetadata')
-          print('S3-OK', len(b), 'bytes')
-      except Exception as e:
-          print('S3-FAIL', type(e).__name__, e)
+          return len(fs.cat('cookbook-microwave-remote-sensing/complex_handout.zarr/.zmetadata'))
+      step('DNS', lambda: socket.gethostbyname(H))
+      step('TCP', lambda: socket.create_connection((H, 443), timeout=10).close() or 'connected')
+      step('TLS', tls)
+      step('HTTP', http)
+      step('S3-cat', bucket)
       PY
     - "env | grep -iE 'proxy|aws_' || echo probe-no-proxy-or-aws-vars"

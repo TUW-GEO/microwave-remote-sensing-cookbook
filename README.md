@@ -120,3 +120,4 @@ Stop and remove the container
    ```bash
    docker compose down
    ```
+

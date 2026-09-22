@@ -9,3 +9,23 @@ include:
   - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/main/build/build.yml"
   - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/main/publish/pages.yml"
   - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/main/test/code-quality.yml"
+
+build:
+  before_script:
+    - python -c "import socket as s; h='s3.garage.staging.jaas.datalab.tuwien.ac.at'; print('DNS', s.gethostbyname(h)); c=s.create_connection((h, 443), timeout=10); c.close(); print('TCP-OK')" || echo probe-dns-or-tcp-failed
+    - |
+      python - <<'PY'
+      import os, s3fs
+      try:
+          fs = s3fs.S3FileSystem(
+              key=os.environ['AWS_ACCESS_KEY_ID'],
+              secret=os.environ['AWS_SECRET_ACCESS_KEY'],
+              endpoint_url='https://s3.garage.staging.jaas.datalab.tuwien.ac.at',
+              client_kwargs={'region_name': 'garage'},
+          )
+          b = fs.cat('cookbook-microwave-remote-sensing/complex_handout.zarr/.zmetadata')
+          print('S3-OK', len(b), 'bytes')
+      except Exception as e:
+          print('S3-FAIL', type(e).__name__, e)
+      PY
+    - "env | grep -iE 'proxy|aws_' || echo probe-no-proxy-or-aws-vars"

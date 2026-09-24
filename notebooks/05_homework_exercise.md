@@ -4,11 +4,11 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.19.1
+    jupytext_version: 1.19.5
 kernelspec:
-  display_name: Python 3
-  language: python
   name: python3
+  display_name: Python 3 (ipykernel)
+  language: python
 ---
 
 # Homework Exercise 5: SAR Wavelength and Polarization
@@ -35,6 +35,19 @@ import hvplot.xarray  # noqa
 import intake
 
 from microwave_remote_sensing_cookbook.catalog import get_intake_url
+
+from microwave_remote_sensing_cookbook.mc_widgets import AnswerStore, MCQuestion
+
+store = store = AnswerStore("answers.json")
+
+QUESTIONS = {
+    "Q2": {
+    "denser_higher_lai_crosspol_increase": "As a forest gets denser (higher LAI), the strength of the cross-polarized return signal will always increase, regardless of the radar band used.",
+    "denser_lower_lai_crosspol_nochange": "As a forest gets denser (lower LAI), the strength of the cross-polarized return signal will not change, regardless of the radar band used.",
+    "high_lai_crosspol_l_stronger_than_c": "At high Leaf Area Index, the cross-polarized backscatter returns are stronger at L-band than at C-band wavelengths.",
+    "high_lai_copol_l_higher_than_c": "The received energy of co-polarized backscattering at high LAI is higher for L-band than for C-band wavelength.",
+    },
+}
 ```
 
 ## Question 1
@@ -55,9 +68,7 @@ and therefore needs a conversion from dB to linear scale. Checkout Notebook 2 ag
 </div>
 
 ```{code-cell} ipython3
----
-tags: skip-execution
----
+:tags: [skip-execution]
 
 url = get_intake_url()
 cat = intake.open_catalog(url)
@@ -87,9 +98,7 @@ $$
 $$
 
 ```{code-cell} ipython3
----
-tags: skip-execution
----
+:tags: [skip-execution]
 
 rcross_da_s1 = ...  # YOUR CODE HERE
 rcross_da_alos = ...  # YOUR CODE HERE
@@ -98,9 +107,7 @@ rcross_da_alos = ...  # YOUR CODE HERE
 After you calculate the CR, plot the results with the following code.
 
 ```{code-cell} ipython3
----
-tags: skip-execution
----
+:tags: [skip-execution]
 
 LAI_mean = fused_ds.LAI.mean("time")
 
@@ -153,19 +160,18 @@ _Figure 1: (Left) Map of MEAN LAI around Lake Garda. The pixel values can be see
 
 Analyse the plot that you created above. Based on what you see, select the correct statements.
 
-- [ ] As a forest gets denser (higher LAI), the strength of the cross-polarized return signal will always increase, regardless of the radar band used.
-- [ ] As a forest gets denser (lower LAI), the strength of the cross-polarized return signal will not change, regardless of the radar band used.
-- [ ] At high Leaf Area Index, the cross-polarized backscatter returns are stronger at L-band than at C-band wavelengths.
-- [ ] The received energy of co-polarized backscattering at high LAI is higher for L-band than for C-band wavelength
+```{code-cell} ipython3
+:tags: [hide-input]
+
+MCQuestion(store, "ex5", "Q2", QUESTIONS["Q2"]).show()
+```
 
 ## Question 3
 
 For this question we will create a boxplot to analyse the sensitivity of CR with to changes in LAI. Sensitivity means how high a response is when we change another variable, like LAI in this case. So an increased sensitivity means a higher response for the same increase in LAI. The boxplot uses boxes to illustrate the distributions of binned LAI values. Box limits indicate the range of the central 50% of the data (a.k.a inter quartile range: IQR), with the median value depicted as a central red line. The whisker limits demarcate 1.5 times the distance of the IQR. Values outside of the whiskers are considered outliers. Outliers have been eliminated in this plot to make the plot more readable.
 
 ```{code-cell} ipython3
----
-tags: skip-execution
----
+:tags: [skip-execution]
 
 # labels for LAI bins
 ranger = [str(x).zfill(1) for x in range(1, 6)]

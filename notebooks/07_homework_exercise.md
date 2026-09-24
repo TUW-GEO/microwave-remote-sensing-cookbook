@@ -4,11 +4,11 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.19.1
+    jupytext_version: 1.19.5
 kernelspec:
-  display_name: Python 3
-  language: python
   name: python3
+  display_name: Python 3 (ipykernel)
+  language: python
 ---
 
 # Homework Exercise 7: Speckle Statistics
@@ -24,6 +24,20 @@ from scipy.ndimage import uniform_filter  #noqa
 import hvplot.xarray  # noqa
 
 from microwave_remote_sensing_cookbook.catalog import get_intake_url
+from microwave_remote_sensing_cookbook.mc_widgets import AnswerStore, MCQuestion
+
+store = store = AnswerStore("answers.json")
+
+QUESTIONS = {
+    "Q3": {
+    "larger_kernel_degrades_resolution": "Enlarging the kernel increases the degree of spatial averaging, which effectively degrades the image's spatial resolution by suppressing local detail.",
+    "smaller_kernel_more_speckle_removed": "The smaller the kernel size, the more speckle noise is removed.",
+    "kernel_size_no_impact": "The choice of the kernel size has no impact on the speckle noise removal.",
+    "no_removal_preserves_temporal": "To preserve the temporal resolution of an image, speckle should not be removed.",
+    "larger_kernel_more_speckle_removed": "The larger the kernel size, the more speckle noise is removed.",
+    "temporal_preferable_to_spatial": "A temporal filtering approach is generally preferable to a purely spatial filtering approach for speckle reduction, even when surface changes are evident across temporal observations of the same scene.",
+    },
+}
 ```
 
 ## Question 1
@@ -52,9 +66,7 @@ sig0_da
 Let's build up the Lee filter function:
 
 ```{code-cell} ipython3
----
-tags: skip-execution
----
+:tags: [skip-execution]
 
 def lee_filter(raster, size=...):
     """
@@ -79,9 +91,7 @@ def lee_filter(raster, size=...):
 Apply your function and compute the Lee filter for at least two different kernel sizes (size number must be odd).
 
 ```{code-cell} ipython3
----
-tags: skip-execution
----
+:tags: [skip-execution]
 
 sig0_da.data = ...  # YOUR CODE HERE
 ```
@@ -89,9 +99,7 @@ sig0_da.data = ...  # YOUR CODE HERE
 Plot you results usign the following code:
 
 ```{code-cell} ipython3
----
-tags: skip-execution
----
+:tags: [skip-execution]
 
 sig0_da.hvplot.image(
     x="x", y="y", robust=True, data_aspect=1, cmap="Greys_r", rasterize=True
@@ -104,14 +112,11 @@ sig0_da.hvplot.image(
 
 Based on your plotted results, select which of the below statement is correct:
 
-+++
+```{code-cell} ipython3
+:tags: [hide-input]
 
-- [ ] Enlarging the kernel increases the degree of spatial averaging, which effectively degrades the image’s spatial resolution by suppressing local detail.
-- [ ] The smaller the kernel size, the more speckle noise is removed.
-- [ ] The choice of the kernel size has no impact on the speckle noise removal.
-- [ ] To preserve the temporal resolution of an image, speckle should not be removed.
-- [ ] The larger the kernel size, the more speckle noise is removed.
-- [ ] A temporal filtering approach is generally preferable to a purely spatial filtering approach for speckle reduction, even when surface changes are evident across temporal observations of the same scene.
+MCQuestion(store, "ex7", "Q3", QUESTIONS["Q3"]).show()
+```
 
 ## Wrapping Up
 

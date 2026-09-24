@@ -4,11 +4,11 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.19.1
+    jupytext_version: 1.19.5
 kernelspec:
-  display_name: Python 3
-  language: python
   name: python3
+  display_name: Python 3 (ipykernel)
+  language: python
 ---
 
 # Homework Exercise 8: Generation and Interpretation of an Interferogram using Sentinel-1 Imagery
@@ -31,6 +31,43 @@ import folium
 from matplotlib.colors import ListedColormap
 
 from microwave_remote_sensing_cookbook.catalog import get_intake_url
+
+from microwave_remote_sensing_cookbook.mc_widgets import AnswerStore, MCQuestion
+
+store = store = AnswerStore("answers.json")
+
+
+QUESTIONS = {
+    "Q1a": {
+        "left_phase_interferogram": "The image on the left shows a phase interferogram.",
+        "right_amplitude_coherence": "The image on the right shows an amplitude interferogram, also called coherence.",
+        "amp_backscatter_coherence_linear": "Amplitude, backscatter and coherence are linearly correlated.",
+        "coherence_related_backscatter_decrease": "Coherence is mainly related to a decrease in backscatter between two acquisitions.",
+        "right_rtc_sigma_nought": "The image on the right shows a RTC sigma nought backscatter.",
+    },
+
+    "Q1b": {
+       "fringe_topography_and_deformation": "The fringe pattern could be indicative of both local surface topography and ground deformation.",
+       "fringe_loss_of_coherence": "The fringe pattern is indicative of a loss of coherence.",
+        "deformation_faster_towards_center": "Focus on the left part of the image, where you see the circular fringe pattern: the deformation is faster towards the center of the circular pattern.",
+    },
+
+    "Q2a": {
+        "deformation_landslide": "The interferogram above depicts ground deformation due to a landslide event.",
+        "deformation_volcanic": "The interferogram above depicts ground deformation due to a volcanic eruption event.",
+        "deformation_tsunami": "The interferogram above depicts ground deformation due to a tsunami event.",
+        "negligible_deformation": "The interferogram above shows negligible evidence of ground deformation.",
+
+    },
+
+    "Q2b": {
+        "high_coherence_urban": "The coherence is high (bright color) over urban areas.",
+        "low_coherence_forested": "The coherence is low (dark color) over forested areas.",
+        "high_coherence_bare_soil": "The coherence is high over bare soil (non-forested areas).",
+        "high_coherence_high_change": "High coherence is typically seen in areas affected by high rates of change in surface structure, moisture and vegetation."
+
+    }
+}
 ```
 
 ## Load the data
@@ -91,19 +128,19 @@ This homework exercise will test your understanding of:
 
 Please refer to the above plots. Which of the following statements are correct?
 
-- [ ] The image on the left shows a phase interferogram.
-- [ ] The image on the right shows an amplitude interferogram, also called coherence.
-- [ ] Amplitude, backscatter and coherence are linearly correlated.
-- [ ] Coherence is mainly related to a decrease in backscatter between two acquistions.
-- [ ] The image on the right shows a RTC sigma nougth backscatter.
+```{code-cell} ipython3
+:tags: [hide-input]
+
+MCQuestion(store, "ex8", "Q1a", QUESTIONS["Q1a"]).show()
+```
 
 Focus on the left plot. Which of the following statements are correct?
 
-- [ ] The fringe pattern could be indicative of both local surface topography and ground deformation.
-- [ ] The fringe pattern is indicative of a loss of coherence.
-- [ ] Focus on the left part of the image, where you see the circular fringe pattern: the deformation is faster towards the center of the circular pattern.
+```{code-cell} ipython3
+:tags: [hide-input]
 
-+++
+MCQuestion(store, "ex8", "Q1b", QUESTIONS["Q1b"]).show()
+```
 
 Don't change anything in the next cell, besides the step for sampling (skipping pixels in the plot), if the plotting takes too long to finish.
 
@@ -173,17 +210,19 @@ m
 
 Please refer to the above plot, select the "IGF Data" layer, and select the correct statements:
 
-- [ ] The interferogram above depicts ground deformation due to a landslide event.
-- [ ] The interferogram above depicts ground deformation due to a volcanic eruption event.
-- [ ] The interferogram above depicts ground deformation due to a tsunami event.
-- [ ] The interferogram above show negligible evidence of ground deformation.
+```{code-cell} ipython3
+:tags: [hide-input]
+
+MCQuestion(store, "ex8", "Q2a", QUESTIONS["Q2a"]).show()
+```
 
 Please refer to the above plot, select the "Coherence Data" layer, and select the correct statements:
 
-- [ ] The coherence is high (bright color) over urban areas.
-- [ ] The coherence is low (dark color) over forested areas.
-- [ ] The coherence is high over bare soil (non-forested areas).
-- [ ] High coherence is typically seen in areas affected by high rates of change in surface structure, moisture and vegetation.
+```{code-cell} ipython3
+:tags: [hide-input]
+
+MCQuestion(store, "ex8", "Q2b", QUESTIONS["Q2b"]).show()
+```
 
 ## Wrapping Up
 

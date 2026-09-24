@@ -4,11 +4,11 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.19.1
+    jupytext_version: 1.19.5
 kernelspec:
-  display_name: Python 3
-  language: python
   name: python3
+  display_name: Python 3 (ipykernel)
+  language: python
 ---
 
 # Homework Exercise 3: Backscattering Coefficients
@@ -32,6 +32,15 @@ from microwave_remote_sensing_cookbook.catalog import get_intake_url
 from microwave_remote_sensing_cookbook.mc_widgets import AnswerStore, MCQuestion
 
 store = store = AnswerStore("answers.json")
+
+QUESTIONS = {
+    "Q1": {
+        "cloud_masking": "Cloud masking",
+        "geometric_terrain_correction": "Geometric terrain correction",
+        "conversion_to_db": "Conversion to dB",
+        "radiometric_terrain_correction": "Radiometric terrain correction (terrain flattening)",
+    },
+}
 ```
 
 ```{code-cell} ipython3
@@ -48,12 +57,9 @@ ex3_dc
 Execute the lines below to create the plot. You now see a SAR image with unknown processing level. Based on what you see, which pre-processing steps have been applied to the image? Note: One, several, or all answers are possible.
 
 ```{code-cell} ipython3
-MCQuestion(store, "ex3", "Q1", {
-    "cloud_masking": "Cloud masking",
-    "geometric_terrain_correction": "Geometric terrain correction",
-    "conversion_to_db": "Conversion to dB",
-    "radiometric_terrain_correction": "Radiometric terrain correction (terrain flattening)",
-}).show()
+:tags: [hide-input]
+
+MCQuestion(store, "ex3", "Q1", QUESTIONS["Q1"]).show()
 ```
 
 ```{code-cell} ipython3
@@ -67,6 +73,7 @@ ex3_dc.hvplot.image(
     rasterize=True,
 ).opts(frame_height=600, framewise=False, aspect="equal")
 ```
+
 ## Question 2
 
 Name all types of geometric radar image distortions in a SAR image. How are they caused, and how can we get rid of them?
@@ -80,9 +87,7 @@ Name all types of geometric radar image distortions in a SAR image. How are they
 Use the figure below question 1 to identify areas that are affected by foreshortening and radar shadows. Use the mouseover to retrieve their x/y coordinates. Then use these coordinates to annotate the following `matplotlib` figure with labels by putting them in the lines indicated with # Your coordinates here.
 
 ```{code-cell} ipython3
----
-tags: skip-execution
----
+:tags: [skip-execution]
 
 zoom = ex3_dc.sel(x=slice(11.25, 11.5), y=slice(47.75, 47.5)).band_data
 fig, ax = plt.subplots(figsize=(10, 8))

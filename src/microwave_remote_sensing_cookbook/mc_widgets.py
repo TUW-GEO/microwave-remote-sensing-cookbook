@@ -3,6 +3,8 @@
 import json
 from pathlib import Path
 
+import ipywidgets as widgets
+
 
 class AnswerStore:
     """Saves and Loads answers from json store."""
@@ -20,6 +22,7 @@ class AnswerStore:
         self.path.write_text(json.dumps(self.data, indent=2, sort_keys=True))
 
     def set(self, chapter: str, q_key: str, answer_option: str, value: bool) -> None:  # noqa: D102, FBT001
+        self.data = self._load()  # frisch laden -> fremde Änderungen mitnehmen
         self.data.setdefault(chapter, {}).setdefault(q_key, {})[answer_option] = value
         self._save()
 
@@ -34,19 +37,39 @@ class AnswerStore:
 
 
 class MCQuestion:
-    """Creates MC-Questions with Checkboxes."""
+    """A multiple-choice question. Reads/writes its subtree in the store."""
 
-    def __init__(  # noqa: D107
+    def __init__(
         self,
         store: AnswerStore,
         chapter: str,
         q_key: str,
-        answer_options: dict[str, str],
+        options: dict[str, str],
     ) -> None:
-        raise NotImplementedError
+        # options: {internal_key: display_text}
+        self.store = store
+        self.chapter = chapter
+        self.q_key = q_key
+        self.options = options
+        self.checkboxes: dict[str, widgets.Checkbox] = {}  # internal_key -> Checkbox
+        self._build()
 
-    def _build_question(self) -> None:
-        raise NotImplementedError
+    def _build(self) -> None:
+        for opt_key, text in self.options.items():
+            cb = widgets.Checkbox(
+                value=self.store.get(self.chapter, self.q_key, opt_key),
+                description=text,
+                indent=False,
+                style={"description_width": "initial"},
+                layout=widgets.Layout(width="auto"),
+            )
 
-    def show_question(self) -> None:  # noqa: D102
-        raise NotImplementedError
+            # Late-binding fix: pin opt_key as a default argument
+            def on_change(change, ok=opt_key):
+                self.store.set(self.chapter, self.q_key, ok, change["new"])
+
+            cb.observe(on_change, names="value")
+            self.checkboxes[opt_key] = cb
+
+    def show(self):
+        return widgets.VBox(list(self.checkboxes.values()))

@@ -29,6 +29,9 @@ import intake
 from pathlib import Path
 from functools import partial
 from microwave_remote_sensing_cookbook.catalog import get_intake_url
+from microwave_remote_sensing_cookbook.mc_widgets import AnswerStore, MCQuestion
+
+store = store = AnswerStore("answers.json")
 ```
 
 ```{code-cell} ipython3
@@ -42,14 +45,16 @@ ex3_dc
 
 +++
 
-Execute the lines below to create the plot. You now see a SAR image with unknown processing level. Based on what you see, which pre-processing steps have been applied to the image?
+Execute the lines below to create the plot. You now see a SAR image with unknown processing level. Based on what you see, which pre-processing steps have been applied to the image? Note: One, several, or all answers are possible.
 
-- [ ] Cloud masking
-- [ ] Geometric terrain correction
-- [ ] Conversion to dB
-- [ ] Radiometric terrain correction (terrain flattening)
-
-Select the answers you think are correct by editing the markdown text and putting an 'x' in the brackets. Note: One, several, or all answers are possible.
+```{code-cell} ipython3
+MCQuestion(store, "ex3", "Q1", {
+    "cloud_masking": "Cloud masking",
+    "geometric_terrain_correction": "Geometric terrain correction",
+    "conversion_to_db": "Conversion to dB",
+    "radiometric_terrain_correction": "Radiometric terrain correction (terrain flattening)",
+}).show()
+```
 
 ```{code-cell} ipython3
 ex3_dc.hvplot.image(
@@ -62,7 +67,6 @@ ex3_dc.hvplot.image(
     rasterize=True,
 ).opts(frame_height=600, framewise=False, aspect="equal")
 ```
-
 ## Question 2
 
 Name all types of geometric radar image distortions in a SAR image. How are they caused, and how can we get rid of them?

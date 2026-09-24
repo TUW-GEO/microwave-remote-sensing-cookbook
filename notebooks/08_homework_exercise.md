@@ -38,46 +38,44 @@ from microwave_remote_sensing_cookbook.mc_widgets import AnswerStore, MCQuestion
 ```{code-cell} ipython3
 ---
 tags: [hide-cell]
-jupyter: {source_hidden: true}
+jupyter:
+  source_hidden: true
 ---
-
 store = store = AnswerStore("answers.json")
 
 
 QUESTIONS = {
     "Q1a": {
-        "left_phase_interferogram": "The image on the left shows a phase interferogram.",
-        "right_amplitude_coherence": "The image on the right shows an amplitude interferogram, also called coherence.",
-        "amp_backscatter_coherence_linear": "Amplitude, backscatter and coherence are linearly correlated.",
-        "coherence_related_backscatter_decrease": "Coherence is mainly related to a decrease in backscatter between two acquisitions.",
-        "right_rtc_sigma_nought": "The image on the right shows a RTC sigma nought backscatter.",
+        "a": "a) The image on the left shows a phase interferogram.",
+        "b": "b) The image on the right shows an amplitude interferogram, also called coherence.",
+        "c": "c) Amplitude, backscatter and coherence are linearly correlated.",
+        "d": "d) Coherence is mainly related to a decrease in backscatter between two acquisitions.",
+        "e": "e) The image on the right shows a RTC sigma nought backscatter.",
     },
 
     "Q1b": {
-       "fringe_topography_and_deformation": "The fringe pattern could be indicative of both local surface topography and ground deformation.",
-       "fringe_loss_of_coherence": "The fringe pattern is indicative of a loss of coherence.",
-        "deformation_faster_towards_center": "Focus on the left part of the image, where you see the circular fringe pattern: the deformation is faster towards the center of the circular pattern.",
+       "a": "a) The fringe pattern could be indicative of both local surface topography and ground deformation.",
+       "b": "b) The fringe pattern is indicative of a loss of coherence.",
+        "c": "c) Focus on the left part of the image, where you see the circular fringe pattern: the deformation is faster towards the center of the circular pattern.",
     },
 
     "Q2a": {
-        "deformation_landslide": "The interferogram above depicts ground deformation due to a landslide event.",
-        "deformation_volcanic": "The interferogram above depicts ground deformation due to a volcanic eruption event.",
-        "deformation_tsunami": "The interferogram above depicts ground deformation due to a tsunami event.",
-        "negligible_deformation": "The interferogram above shows negligible evidence of ground deformation.",
+        "a": "a) The interferogram above depicts ground deformation due to a landslide event.",
+        "b": "b) The interferogram above depicts ground deformation due to a volcanic eruption event.",
+        "c": "c) The interferogram above depicts ground deformation due to a tsunami event.",
+        "d": "d) The interferogram above shows negligible evidence of ground deformation.",
 
     },
 
     "Q2b": {
-        "high_coherence_urban": "The coherence is high (bright color) over urban areas.",
-        "low_coherence_forested": "The coherence is low (dark color) over forested areas.",
-        "high_coherence_bare_soil": "The coherence is high over bare soil (non-forested areas).",
-        "high_coherence_high_change": "High coherence is typically seen in areas affected by high rates of change in surface structure, moisture and vegetation."
+        "a": "a) The coherence is high (bright color) over urban areas.",
+        "b": "b) The coherence is low (dark color) over forested areas.",
+        "c": "c) The coherence is high over bare soil (non-forested areas).",
+        "d": "d) High coherence is typically seen in areas affected by high rates of change in surface structure, moisture and vegetation."
 
     }
 }
 ```
-
-
 
 ## Load the data
 

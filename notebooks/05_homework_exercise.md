@@ -42,16 +42,17 @@ from microwave_remote_sensing_cookbook.mc_widgets import AnswerStore, MCQuestion
 ```{code-cell} ipython3
 ---
 tags: [hide-cell]
-jupyter: {source_hidden: true}
+jupyter:
+  source_hidden: true
 ---
 store = store = AnswerStore("answers.json")
 
 QUESTIONS = {
     "Q2": {
-    "denser_higher_lai_crosspol_increase": "As a forest gets denser (higher LAI), the strength of the cross-polarized return signal will always increase, regardless of the radar band used.",
-    "denser_lower_lai_crosspol_nochange": "As a forest gets denser (lower LAI), the strength of the cross-polarized return signal will not change, regardless of the radar band used.",
-    "high_lai_crosspol_l_stronger_than_c": "At high Leaf Area Index, the cross-polarized backscatter returns are stronger at L-band than at C-band wavelengths.",
-    "high_lai_copol_l_higher_than_c": "The received energy of co-polarized backscattering at high LAI is higher for L-band than for C-band wavelength.",
+    "a": "a) As a forest gets denser (higher LAI), the strength of the cross-polarized return signal will always increase, regardless of the radar band used.",
+    "b": "b) As a forest gets denser (lower LAI), the strength of the cross-polarized return signal will not change, regardless of the radar band used.",
+    "c": "c) At high Leaf Area Index, the cross-polarized backscatter returns are stronger at L-band than at C-band wavelengths.",
+    "d": "d) The received energy of co-polarized backscattering at high LAI is higher for L-band than for C-band wavelength.",
     },
 }
 ```

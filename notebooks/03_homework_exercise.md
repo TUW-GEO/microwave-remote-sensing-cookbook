@@ -30,26 +30,24 @@ from pathlib import Path
 from functools import partial
 from microwave_remote_sensing_cookbook.catalog import get_intake_url
 from microwave_remote_sensing_cookbook.mc_widgets import AnswerStore, MCQuestion
-
 ```
 
 ```{code-cell} ipython3
 ---
 tags: [hide-cell]
-jupyter: {source_hidden: true}
+jupyter:
+  source_hidden: true
 ---
-
 store = store = AnswerStore("answers.json")
 
 QUESTIONS = {
     "Q1": {
-        "cloud_masking": "Cloud masking",
-        "geometric_terrain_correction": "Geometric terrain correction",
-        "conversion_to_db": "Conversion to dB",
-        "radiometric_terrain_correction": "Radiometric terrain correction (terrain flattening)",
+        "a": "a) Cloud masking",
+        "b": "b) Geometric terrain correction",
+        "c": "c) Conversion to dB",
+        "d": "d) Radiometric terrain correction (terrain flattening)",
     },
 }
-
 ```
 
 ```{code-cell} ipython3

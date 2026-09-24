@@ -33,6 +33,13 @@ from matplotlib.colors import ListedColormap
 from microwave_remote_sensing_cookbook.catalog import get_intake_url
 
 from microwave_remote_sensing_cookbook.mc_widgets import AnswerStore, MCQuestion
+```
+
+```{code-cell} ipython3
+---
+tags: [hide-cell]
+jupyter: {source_hidden: true}
+---
 
 store = store = AnswerStore("answers.json")
 
@@ -69,6 +76,8 @@ QUESTIONS = {
     }
 }
 ```
+
+
 
 ## Load the data
 

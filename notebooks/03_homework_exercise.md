@@ -31,6 +31,14 @@ from functools import partial
 from microwave_remote_sensing_cookbook.catalog import get_intake_url
 from microwave_remote_sensing_cookbook.mc_widgets import AnswerStore, MCQuestion
 
+```
+
+```{code-cell} ipython3
+---
+tags: [hide-cell]
+jupyter: {source_hidden: true}
+---
+
 store = store = AnswerStore("answers.json")
 
 QUESTIONS = {
@@ -41,6 +49,7 @@ QUESTIONS = {
         "radiometric_terrain_correction": "Radiometric terrain correction (terrain flattening)",
     },
 }
+
 ```
 
 ```{code-cell} ipython3

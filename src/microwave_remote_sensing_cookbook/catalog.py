@@ -17,9 +17,9 @@ from pydantic import BaseModel, Field
 from pydantic_extra_types.color import Color
 from typing_extensions import TypedDict
 
-ROOT = "https://git.geo.tuwien.ac.at"
+ROOT = "https://gitlab.tuwien.ac.at"
 REPO_API = "api/v4/projects/1264/repository/files"
-REPO_RAW = "public_projects/microwave-remote-sensing/-/raw"
+REPO_RAW = "cookbooks/data/microwave-remote-sensing-cookbook/-/raw"
 
 os.environ["CACHE_DEST"] = str(
     Path(

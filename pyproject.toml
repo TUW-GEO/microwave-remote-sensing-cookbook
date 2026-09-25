@@ -45,12 +45,13 @@ dependencies = [
   "requests>=2.33.1",
   "rich>=15",
   "rioxarray>=0.22",
+  "s3fs>=2026.9.0",
   "scipy>=1.17.1",
   "seaborn>=0.13.2",
   "shapely>=2.1.2",
   "snaphu>=0.4.1",
   "xarray>=2026.4",
-  "zarr<3",
+  "zarr>=3.4.0",
 ]
 [project.optional-dependencies]
 book = [
@@ -62,6 +63,7 @@ book = [
 
 [dependency-groups]
 dev = [
+  "jupyter-bokeh>=4.1.0",
   "nbmake>=1.5.5",
   "pre-commit>=4.6",
   "pytest-xdist>=3.8",

@@ -6,7 +6,9 @@ catalog is resolvable at the same import path in the (binder) reading
 environment.
 """
 
+import fsspec.core
 import intake
+from intake.readers.datatypes import FileData
 
 
 class S3FilesReader(intake.readers.readers.OpenFilesReader):
@@ -19,7 +21,7 @@ class S3FilesReader(intake.readers.readers.OpenFilesReader):
     options into top-level kwargs so they map to ``S3FileSystem``.
     """
 
-    def _read(self, data, **kw):
+    def _read(self, data: FileData, **kw: object) -> fsspec.core.OpenFiles:
         kw[self.url_arg] = data.url
         if data.storage_options:
             # Flatten storage options into top-level kwargs for this s3fs version

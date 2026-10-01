@@ -29,7 +29,7 @@ from microwave_remote_sensing_cookbook.catalog import (
     _CorineColorMapping,
 )
 
-hv.extension("bokeh")  # ty: ignore[too-many-positional-arguments]
+hv.extension("bokeh")
 COMPLETE_LAND_COVER = "\xa0\xa0\xa0 Complete Land Cover"
 LAND_COVER: dict[str, int] = {COMPLETE_LAND_COVER: 1}
 RANGEXY = RangeXY()
@@ -841,7 +841,7 @@ def plot_displacement_map(
         subset.plot.imshow(
             cmap=cmap_disp,
             cbar_kwargs={"label": "Meters [m]"},
-        ).axes.set_title(title)  # ty:ignore[no-matching-overload]
+        ).axes.set_title(title)
     )
     plt.show()
 
@@ -926,7 +926,7 @@ def plot_summary(  # noqa: PLR0913
             cmap=cmap_disp,
             ax=ax[1],
             cbar_kwargs={"label": "Meters [m]"},
-        ).axes.set_title("Displacement Map of the Subset")  # ty:ignore[no-matching-overload]
+        ).axes.set_title("Displacement Map of the Subset")
     )
 
     (
@@ -941,7 +941,7 @@ def plot_summary(  # noqa: PLR0913
             cmap=cmap_disp,
             ax=ax[3],
             cbar_kwargs={"label": "Meters [m]"},
-        ).axes.set_title("Displacement Map entire scene (coarse resolution)")  # ty:ignore[no-matching-overload]
+        ).axes.set_title("Displacement Map entire scene (coarse resolution)")
     )
 
     plt.tight_layout()

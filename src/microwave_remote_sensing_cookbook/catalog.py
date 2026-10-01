@@ -57,6 +57,7 @@ def get_intake_url(
     root: str = ROOT,
     branch: str = "main",
     repo: str = REPO_RAW,
+    notebook: int | None = None,
     *,
     verbose: bool = True,
 ) -> str:
@@ -70,6 +71,10 @@ def get_intake_url(
         The branch from the repo that should be accessed
     repo: str
         The repo that the intake should take the data from
+    notebook: int | None
+        Optional notebook number (3-9). When provided, points at the
+        per-notebook catalog ``microwave-remote-sensing-<N>.yml``; otherwise
+        the combined ``microwave-remote-sensing.yml``.
     verbose: bool
         If true prints the returned path to stdout
 
@@ -78,7 +83,12 @@ def get_intake_url(
         Intake catalog : str
 
     """
-    intake_path = f"{root}/{repo}/{branch}/microwave-remote-sensing.yml"
+    catalog_name = (
+        f"microwave-remote-sensing-{notebook}.yml"
+        if notebook is not None
+        else "microwave-remote-sensing.yml"
+    )
+    intake_path = f"{root}/{repo}/{branch}/{catalog_name}"
     if verbose:
         print(intake_path)
     return intake_path

@@ -1721,19 +1721,19 @@ requires-dist = [
     { name = "requests", specifier = ">=2.33.1" },
     { name = "rich", specifier = ">=15" },
     { name = "rioxarray", specifier = ">=0.22" },
-    { name = "s3fs", specifier = ">=2026.9.0" },
+    { name = "s3fs", specifier = ">=2026.9" },
     { name = "scipy", specifier = ">=1.17.1" },
     { name = "seaborn", specifier = ">=0.13.2" },
     { name = "shapely", specifier = ">=2.1.2" },
     { name = "snaphu", specifier = ">=0.4.1" },
     { name = "xarray", specifier = ">=2026.4" },
-    { name = "zarr", specifier = ">=3.4.0" },
+    { name = "zarr", specifier = ">=3.4" },
 ]
 provides-extras = ["book"]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "jupyter-bokeh", specifier = ">=4.1.0" },
+    { name = "jupyter-bokeh", specifier = ">=4.1" },
     { name = "nbmake", specifier = ">=1.5.5" },
     { name = "pre-commit", specifier = ">=4.6" },
     { name = "pytest-xdist", specifier = ">=3.8" },

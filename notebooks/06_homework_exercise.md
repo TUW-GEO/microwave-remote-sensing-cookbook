@@ -46,7 +46,7 @@ from microwave_remote_sensing_cookbook.catalog import CorineColorCollection, get
 ## Load Sentinel-1 Data
 
 ```{code-cell} ipython3
-url = get_intake_url()
+url = get_intake_url(notebook=6)
 cat = intake.open_catalog(url)
 sig0_da = cat.neusiedler.read().sig0.compute()
 ```

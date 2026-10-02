@@ -40,7 +40,7 @@ from microwave_remote_sensing_cookbook.catalog import get_intake_url
 ---
 tags: skip-execution
 ---
-url = get_intake_url()
+url = get_intake_url(notebook=4)
 cat = intake.open_catalog(url)
 fused_ds = cat["fused_array"].read().compute()
 fused_ds

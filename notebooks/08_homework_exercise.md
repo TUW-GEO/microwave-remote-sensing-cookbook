@@ -36,7 +36,7 @@ from microwave_remote_sensing_cookbook.catalog import get_intake_url
 ## Load the data
 
 ```{code-cell} ipython3
-url = get_intake_url()
+url = get_intake_url(notebook=8)
 cat = intake.open_catalog(url)
 ds = cat.ex8.read().compute()
 ds

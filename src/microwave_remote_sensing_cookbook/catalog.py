@@ -13,6 +13,7 @@ from enum import StrEnum  # type: ignore[unresolved-import]
 from pathlib import Path
 
 import gitlab
+import s3fs
 from pydantic import BaseModel, Field
 from pydantic_extra_types.color import Color
 from typing_extensions import TypedDict
@@ -20,6 +21,9 @@ from typing_extensions import TypedDict
 ROOT = "https://gitlab.tuwien.ac.at"
 REPO_API = "api/v4/projects/1264/repository/files"
 REPO_RAW = "cookbooks/data/microwave-remote-sensing-cookbook/-/raw"
+
+S3_ENDPOINT = "https://s3.garage.staging.jaas.datalab.tuwien.ac.at"
+S3_BUCKET = "cookbook-microwave-remote-sensing"
 
 os.environ["CACHE_DEST"] = str(
     Path(
@@ -121,3 +125,48 @@ def make_gitlab_urls(sensor: _SensorOptions | str) -> list[str]:
         )
         if gitlab_file["path"].endswith(".tif")
     ]
+
+
+def _s3_filesystem() -> "s3fs.S3FileSystem":
+    """Create the S3 filesystem for the Garage object storage.
+
+    Credentials are expected in the standard AWS environment variables
+    (``AWS_ACCESS_KEY_ID``, ``AWS_SECRET_ACCESS_KEY``) and the endpoint is
+    configured for the TU Wien Garage deployment.
+
+    Returns
+    -------
+    s3fs.S3FileSystem
+        Configured filesystem for the cookbook bucket.
+
+    """
+    return s3fs.S3FileSystem(
+        key="GKcbb84001a55544bde09c0872",
+        secret="28c2e5fc6ebb6445ccabe16793bbf62631a04b93333d305f54b248a3b07e989d",
+        endpoint_url=S3_ENDPOINT,
+        client_kwargs={"region_name": "garage"},
+    )
+
+
+def make_s3_urls(sensor: _SensorOptions | str) -> list[object]:
+    """Find geotiff files for a sensor on S3 object storage.
+
+    Paths are globbed recursively (``**``) for ``*.tif`` under the sensor
+    directory and returned as ``fsspec`` OpenFile objects so they can be
+    handed directly to ``xarray.open_mfdataset``.
+
+    Parameters
+    ----------
+    sensor : str
+        either "alos-2" or "sentinel-1"
+
+    Returns
+    -------
+    list[fsspec.core.OpenFile]
+        OpenFile objects for the matching geotiffs.
+
+    """
+    fs = _s3_filesystem()
+    pattern = f"{S3_BUCKET}/{sensor}/**/*.tif"
+    keys = sorted(fs.glob(pattern))
+    return [fs.open(f"s3://{key}", "rb") for key in keys]

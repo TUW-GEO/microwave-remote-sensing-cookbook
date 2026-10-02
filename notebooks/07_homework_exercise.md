@@ -37,13 +37,13 @@ This homework exercise will test your understanding of:
 - Why speckle occurs in SAR imagery
 - Different filtering approaches applied to SAR imagery
 - How speckle can help characterize physical properties
-## Imports
 
+## Imports
 
 We will use already known data, which consists of Sentinel-1 **sigma naught** $\sigma^0$ images focusing on Lake Neusiedl and the surrounding area, where the CORINE land cover is used for land cover-based visualization and analysis.
 
 ```{code-cell} ipython3
-url = get_intake_url()
+url = get_intake_url(notebook=7)
 cat = intake.open_catalog(url)
 sig0_da = cat.speckle.read().sig0.compute()
 sig0_da

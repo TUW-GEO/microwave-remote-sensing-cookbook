@@ -43,7 +43,7 @@ from microwave_remote_sensing_cookbook.processing import unwrap_array  # noqa: F
 tags: skip-execution
 ---
 
-url = get_intake_url()
+url = get_intake_url(notebook=9)
 cat = intake.open_catalog(url)
 ds = cat.ex9.read().compute()
 

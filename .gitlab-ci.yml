@@ -4,8 +4,11 @@ stages:
   - deploy
   - quality
 
+variables:
+  MYST_NJOBS: 10
+
 include:
-  - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/v2.0.2/ci/build-binder-image.yml"
-  - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/v2.0.2/ci/build-myst-cookbook.yml"
-  - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/v2.0.2/ci/deploy-gitlab-pages.yml"
-  - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/v2.0.2/ci/run-quality-checks.yml"
+  - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/v2.0.3/ci/build-binder-image.yml"
+  - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/v2.0.3/ci/build-myst-cookbook.yml"
+  - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/v2.0.3/ci/deploy-gitlab-pages.yml"
+  - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/v2.0.3/ci/run-quality-checks.yml"

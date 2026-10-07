@@ -45,8 +45,7 @@ project:
   thumbnail: https://gitlab.tuwien.ac.at/cookbooks/data/microwave-remote-sensing-cookbook/-/raw/main/interferrogram.png
 
   keywords:
-    - "remote sensing"
-    - "microwave"
+    - Earth Observation
 
   parts:
     language: Python

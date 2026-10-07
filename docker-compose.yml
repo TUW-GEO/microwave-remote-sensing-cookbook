@@ -5,6 +5,8 @@ services:
     stdin_open: true
     tty: true
     network_mode: "host"
+    volumes:
+      - .:/home/jovyan/microwave_remote_sensing_cookbook
     command:
       [
         "jupyter",

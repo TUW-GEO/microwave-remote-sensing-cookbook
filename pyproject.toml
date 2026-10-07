@@ -1,6 +1,6 @@
 [build-system]
 build-backend = "uv_build"
-requires = [ "uv-build>=0.11,<0.12" ]
+requires = [ "uv-build>=0.12,<0.13" ]
 
 [project]
 name = "microwave-remote-sensing-cookbook"
@@ -55,9 +55,8 @@ dependencies = [
 [project.optional-dependencies]
 book = [
   "jupyter>=1.1.1",
-  "jupyterlab-myst>=2.6",
-  "mystmd>=1.8.3",
-  "turecipe",
+  "jupyterlab-myst>=2.7",
+  "mystmd>=1.11",
 ]
 
 [dependency-groups]
@@ -65,9 +64,10 @@ dev = [
   "nbmake>=1.5.5",
   "pre-commit>=4.6",
   "pytest-xdist>=3.8",
-  "ruff>=0.15.12",
+  "ruff>=0.16.10",
   "tu-cookbook-python",
-  "ty>=0.0.33",
+  "turecipe>=0.0.1",
+  "ty>=0.0.85",
 ]
 
 [tool.uv.sources]

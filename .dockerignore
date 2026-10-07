@@ -1,1 +1,43 @@
-.git
+.# Git context
+.git/
+.gitignore
+
+# Virtual Environments
+.venv/
+venv/
+env/
+.conda_envs/
+
+# Secrets & Local Configs
+.env
+local_settings.py
+
+# Python Cache & Artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+*.egg-info/
+wheels/
+
+# Tooling Cache
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+
+# Jupyter & Book Build Output
+_build/
+notebooks/_build/
+docs/_build/
+.ipynb_checkpoints/
+profile_default/
+ipython_config.py
+
+# IDE & OS clutter
+.vscode/
+.idea/
+.DS_Storegit

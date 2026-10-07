@@ -5,7 +5,7 @@ stages:
   - quality
 
 variables:
-  MYST_NJOBS: 10
+  MYST_NJOBS: 1
 
 include:
   - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/v2.0.3/ci/build-binder-image.yml"

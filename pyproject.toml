@@ -52,8 +52,7 @@ dependencies = [
   "xarray>=2026.4",
   "zarr<3",
 ]
-[project.optional-dependencies]
-book = [
+optional-dependencies.book = [
   "jupyter>=1.1.1",
   "jupyterlab-myst>=2.7",
   "mystmd>=1.11",
@@ -66,41 +65,35 @@ dev = [
   "pytest-xdist>=3.8",
   "ruff>=0.16.10",
   "tu-cookbook-python",
-  "turecipe>=0.0.1",
+  "turecipe>=2.0.3",
   "ty>=0.0.85",
 ]
 
-[tool.uv.sources]
-tu-cookbook-python = { git = "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-python.git" }
-turecipe = { git = "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci.git" }
+[tool.uv]
+sources.tu-cookbook-python = { git = "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-python.git" }
+sources.turecipe = { git = "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci.git" }
 
 [tool.ruff]
 target-version = "py313"
 line-length = 88
 indent-width = 4
 exclude = []
-[tool.ruff.format]
-indent-style = "space"
-quote-style = "double"
-line-ending = "auto"
-skip-magic-trailing-comma = false
-docstring-code-line-length = "dynamic"
-docstring-code-format = true
-[tool.ruff.lint]
-select = [ "ALL" ]
-ignore = [
+format.indent-style = "space"
+format.quote-style = "double"
+format.line-ending = "auto"
+format.skip-magic-trailing-comma = false
+format.docstring-code-line-length = "dynamic"
+format.docstring-code-format = true
+lint.select = [ "ALL" ]
+lint.ignore = [
   "COM812", # missing-trailing-comma (may conflict with ruff formatter)
   "D203",   # incorrect-blank-line-before-class (conflicts with D211)
   "D213",   # multi-line-summary-second-line (conflicts with D212)
   "T201",   # print
   "TD",     # TODO comments
 ]
-fixable = [ "ALL" ]
-unfixable = []
+lint.fixable = [ "ALL" ]
+lint.unfixable = []
 
-[tool.pyproject-fmt]
-table_format = "long"
-collapse_tables = [ "project.authors" ]
-
-[tool.pytest.ini_options]
-addopts = "--nbmake -n=auto"
+[tool.pytest]
+ini_options.addopts = "--nbmake -n=auto"

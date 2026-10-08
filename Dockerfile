@@ -16,7 +16,9 @@ RUN apt-get update && \
            /var/cache/apt/*
 
 USER ${NB_UID}
-COPY --chown=${NB_UID}:${NB_GID} . /home/jovyan/microwave_remote_sensing_cookbook
+COPY --chown=${NB_UID}:${NB_GID} src/  /home/jovyan/microwave_remote_sensing_cookbook/src/
+COPY --chown=${NB_UID}:${NB_GID} notebooks/  /home/jovyan/microwave_remote_sensing_cookbook/notebooks/
+COPY --chown=${NB_UID}:${NB_GID} README.md pyproject.toml myst.yml /home/jovyan/microwave_remote_sensing_cookbook
 WORKDIR /home/jovyan/microwave_remote_sensing_cookbook
 
 RUN uv sync

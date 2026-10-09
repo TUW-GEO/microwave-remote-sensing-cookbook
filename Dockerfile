@@ -23,4 +23,6 @@ WORKDIR /home/jovyan/microwave_remote_sensing_cookbook
 
 RUN uv sync
 ENV PATH="/home/jovyan/microwave_remote_sensing_cookbook/.venv/bin:${PATH}"
-RUN uv run python -m ipykernel install --name python3 --display-name "Python 3 (ipykernel)" --user
+RUN uv run python -m ipykernel install --name python3 --display-name "Python 3 (ipykernel)" --user && \
+  uv pip install mystmd jupytext jupyterlab-myst --system && \
+  uv run jupytext-config set-default-viewer markdown

@@ -57,6 +57,7 @@ dependencies = [
 book = [
   "jupyter>=1.1.1",
   "jupyterlab-myst>=2.7",
+  "jupytext>=1.19.6",
   "mystmd>=1.11",
 ]
 
@@ -68,7 +69,7 @@ dev = [
   "pytest-xdist>=3.8",
   "ruff>=0.16.10",
   "tu-cookbook-python",
-  "turecipe>=0.0.1",
+  "turecipe>=2.0.3",
   "ty>=0.0.85",
 ]
 

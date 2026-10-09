@@ -4,7 +4,7 @@ requires = [ "uv-build>=0.12,<0.13" ]
 
 [project]
 name = "microwave-remote-sensing-cookbook"
-version = "0.0.0"
+version = "1.0.0"
 description = """\
   This cookbook accompanies the TU Wien MSc course \"Microwave Remote Sensing Exercises\". In this course students \
   learn to read, visualize and analyze Synthetic Aperture Radar (SAR) data. This will aid interpretation of SAR data \

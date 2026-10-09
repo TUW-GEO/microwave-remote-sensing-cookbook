@@ -38,7 +38,7 @@ import rioxarray  # noqa
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 # Search for some data
@@ -74,7 +74,7 @@ print(len(items), "scenes found")
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 # Load the data and lazily combine items
@@ -90,7 +90,7 @@ sig0_dc = odc.stac.stac_load(
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 # Define the nodata value and scale factor
@@ -105,7 +105,7 @@ sig0 = ...  # YOUR CODE HERE
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 sig0_weekly = ...  # YOUR CODE HERE

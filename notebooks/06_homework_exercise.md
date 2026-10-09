@@ -63,7 +63,7 @@ Tips:
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 # YOUR CODE HERE ----------------------------------------------------------
@@ -88,7 +88,7 @@ We replaced the traditional maximum value with the 98th quantile in our normaliz
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 linear_ds = 10 ** (sig0_rgb_da / 10)
@@ -130,7 +130,7 @@ Let´s first plot the three normalized images separately (Red = Oldest image, Gr
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 fig, axes = plt.subplots(1, 3, figsize=(15, 5))
@@ -152,7 +152,7 @@ And finally, let´s plot the RGB composite.
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 fig, ax = plt.subplots(figsize=(8, 5))

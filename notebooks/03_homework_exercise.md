@@ -77,7 +77,7 @@ Use the figure below question 1 to identify areas that are affected by foreshort
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 zoom = ex3_dc.sel(x=slice(11.25, 11.5), y=slice(47.75, 47.5)).band_data

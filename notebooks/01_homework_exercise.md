@@ -37,7 +37,7 @@ from odc import stac as odc_stac
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 eodc_catalog = pystac_client.Client.open("https://stac.eodc.eu/api/v1")
 
@@ -51,7 +51,7 @@ collection
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 # Define the area of interest by providing coordinates that cover your latest
 # holiday destination (can be a city, state, country, etc.)
@@ -72,7 +72,7 @@ print(len(items), "scenes found.")
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 # Pick one item from items using indexing get the relative orbit from the item
@@ -87,7 +87,7 @@ print(f"The relative orbit number of the item is {relative_orbit}")
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 bands = ...  # YOUR CODE HERE
@@ -105,7 +105,7 @@ sig0_dc = odc_stac.load(
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 nodata = ...  # YOUR CODE HERE
@@ -118,7 +118,7 @@ sig0_dc = ...  # YOUR CODE HERE
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 ...  # YOUR CODE HERE

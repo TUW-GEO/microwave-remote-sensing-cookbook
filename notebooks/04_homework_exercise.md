@@ -38,7 +38,7 @@ from microwave_remote_sensing_cookbook.catalog import get_intake_url
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 url = get_intake_url()
 cat = intake.open_catalog(url)
@@ -54,7 +54,7 @@ Load the new LAI data with the below provided code snippet and extract the CRS a
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 url = get_intake_url()
 cat = intake.open_catalog(url)
@@ -68,14 +68,14 @@ In order to compare LAI with ALOS-2 L-band and Sentinel-1 C-band data, we will m
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 fused_ds.time
 ```
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 lai_ds.time
 ```
@@ -84,7 +84,7 @@ The temporal range of `lai_ds` is longer then the fused ALOS-2 L-band and Sentin
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 lai_ds = ...  # YOUR CODE HERE
@@ -101,7 +101,7 @@ Let's break this down into steps first align both datacubes.
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 lai_ds = ...  # YOUR CODE HERE
@@ -112,7 +112,7 @@ lai_ds
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 lai_ds = ...  # YOUR CODE HERE
@@ -123,7 +123,7 @@ If the previous operations were successfull, 3) we can merge the two variables: 
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 # YOUR CODE HERE ----------------------------------------------------------
@@ -136,7 +136,7 @@ The last step is the 4) `resample` operation to align the timestamps. Use again 
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 fused_ds = ...  # YOUR CODE HERE
@@ -146,7 +146,7 @@ Plot the LAI variable with the following lines of code to check your results:
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 fused_ds.LAI.\
@@ -157,7 +157,7 @@ fused_ds.LAI.\
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 to_store = fused_ds.copy()

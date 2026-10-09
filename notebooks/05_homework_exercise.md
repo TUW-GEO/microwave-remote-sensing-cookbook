@@ -56,7 +56,7 @@ and therefore needs a conversion from dB to linear scale. Checkout Notebook 2 ag
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 url = get_intake_url()
@@ -88,7 +88,7 @@ $$
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 rcross_da_s1 = ...  # YOUR CODE HERE
@@ -99,7 +99,7 @@ After you calculate the CR, plot the results with the following code.
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 LAI_mean = fused_ds.LAI.mean("time")
@@ -164,7 +164,7 @@ For this question we will create a boxplot to analyse the sensitivity of CR with
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 # labels for LAI bins

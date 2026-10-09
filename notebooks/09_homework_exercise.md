@@ -40,7 +40,7 @@ from microwave_remote_sensing_cookbook.processing import unwrap_array  # noqa: F
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 url = get_intake_url()
@@ -59,7 +59,7 @@ mask = (ds.phase != 0).astype(bool)
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 def compute_complex_band(phase_band, intensity_band):
@@ -89,7 +89,7 @@ Plot the above provided data. Please note that we are plotting images in Slant R
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 
@@ -109,7 +109,7 @@ It might take up to 1 or 2 minutes to execute the function, let the code run, an
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 # coarsen
 kernel = 3
@@ -118,7 +118,7 @@ ds = ds.coarsen(x=kernel, y=kernel, boundary="trim").mean()
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 

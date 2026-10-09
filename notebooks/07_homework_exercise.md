@@ -53,7 +53,7 @@ Let's build up the Lee filter function:
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 def lee_filter(raster, size=...):
@@ -80,7 +80,7 @@ Apply your function and compute the Lee filter for at least two different kernel
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 sig0_da.data = ...  # YOUR CODE HERE
@@ -90,7 +90,7 @@ Plot you results usign the following code:
 
 ```{code-cell} ipython3
 ---
-tags: skip-execution
+tags: [skip-execution]
 ---
 
 sig0_da.hvplot.image(

@@ -150,7 +150,7 @@ _commit_and_tag version=`uv version --short`:
 
 # make a new release [target:<major|minor|patch|...> or semver]
 [group("chore")]
-release target: test
+release target:
     @just _ensure_clean
     @just _set_version {{ target }}
     @just changelog

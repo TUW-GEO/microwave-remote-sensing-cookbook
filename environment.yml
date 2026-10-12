@@ -4,8 +4,6 @@ channels:
 dependencies:
   - uv==0.12.1
   - python==3.12
-  - jupyter
-  - jupytext
-  - jupyterlab-myst
+  - ipykernel
   - pip:
       - .

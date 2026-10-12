@@ -15,19 +15,40 @@ COPY --chown=${NB_UID}:${NB_GID} src/ /tmp/src/
 RUN mamba env create -n "${env_name}" -f /tmp/environment.yml && \
     mamba clean --all -f -y
 
-# Create Python kernel and link it to jupyter
-RUN "${CONDA_DIR}/envs/${env_name}/bin/python" -m ipykernel install --user --name="${env_name}" && \
-    # Set the default jupytext viewer to markdown (requires jupytext from environment.yml)
-    "${CONDA_DIR}/envs/${env_name}/bin/jupytext-config" set-default-viewer markdown && \
+# The Jupyter server that JupyterHub launches runs from the BASE conda env (/opt/conda),
+# NOT from the mrs env. Per the jupytext FAQ (JupyterHub/Binder), jupytext must be
+# installed and its serverextension enabled in the env that runs the server. So install
+# jupytext into BASE (the server env) and enable the extension with --sys-prefix so it
+# applies to ALL users.
+USER root
+RUN mamba install -y jupytext jupyterlab-myst && \
+    jupyter server extension enable jupytext --py --sys-prefix
+
+# Register the default kernel (named python3) so EVERY JupyterHub user sees it and
+# notebooks start with it. The kernel must run notebook code in the mrs env, so use
+# mrs's Python as the interpreter (its site-packages hold the science deps). We install
+# the spec into the shared /opt/conda (--prefix) so the base Jupyter server reads it for
+# all users, while the kernel's argv points at mrs's python.
+#   (Using base python here would make notebooks import from base, not mrs.)
+RUN "${CONDA_DIR}/envs/${env_name}/bin/python" -m ipykernel install \
+        --prefix "${CONDA_DIR}" \
+        --name="python3" \
+        --display-name="Python 3 (ipykernel)" && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
 # Activate the custom environment by default for the Jupyter Notebook and Jupyter Console
 # https://github.com/jupyter/docker-stacks/pull/2047
-USER root
 RUN \
     # Startup hook: activates mrs for the notebook server process
     echo "conda activate ${env_name}" >> /usr/local/bin/before-notebook.d/40activate-conda-env.sh && \
+    # Set the default jupytext viewer to markdown for EVERY user spawned by JupyterHub.
+    # This must run as a before-notebook hook (not at image build time), because
+    # JupyterHub gives each user their own home dir; the hook runs in the spawned
+    # user's session and writes to that user's ~/.jupyter/. jupytext is installed in
+    # the BASE env (the server env), so use the absolute base path for jupytext-config
+    # (${CONDA_DIR}/bin = /opt/conda/bin) rather than relying on PATH.
+    echo "${CONDA_DIR}/bin/jupytext-config set-default-viewer markdown" > /usr/local/bin/before-notebook.d/50jupytext-default-viewer.sh && \
     # Default for Jupyter Terminals for all future users
     echo "conda activate ${env_name}" >> /etc/skel/.bashrc && \
     # Default for Jupyter Terminals for the existing NB_USER

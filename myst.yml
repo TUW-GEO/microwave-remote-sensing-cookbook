@@ -56,6 +56,9 @@ project:
     content: CC-BY-4.0
     code: MIT
 
+  gitlab: https://gitlab.tuwien.ac.at/cookbooks/private/microwave-remote-sensing-cookbook
+  jupyter: true
+
   toc:
     - file: README.md
     - title: Preamble

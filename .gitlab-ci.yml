@@ -3,6 +3,7 @@ stages:
   - build
   - deploy
   - quality
+  - jhub
 
 variables:
   MYST_NJOBS: 10
@@ -12,3 +13,36 @@ include:
   - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/v2.0.3/ci/build-myst-cookbook.yml"
   - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/v2.0.3/ci/deploy-gitlab-pages.yml"
   - remote: "https://gitlab.tuwien.ac.at/cookbooks/templates/tu-cookbook-ci/-/raw/v2.0.3/ci/run-quality-checks.yml"
+
+# Build and push a custom JupyterHub image to the DataLab Harbor registry
+# (https://registry.datalab.tuwien.ac.at/harbor/projects/39/repositories).
+# Requires the CI/CD variables JHUB_REGISTRY_USER and JHUB_REGISTRY_PASSWORD
+# (set them as protected/masked variables in the GitLab project settings).
+jhub-image:
+  stage: jhub
+  image: quay.io/buildah/stable
+  variables:
+    # Required when running buildah inside a container
+    STORAGE_DRIVER: "vfs"
+    REGISTRY: "registry.datalab.tuwien.ac.at"
+    # Dockerfile used to build the JupyterHub image
+    JHUB_DOCKERFILE: "Dockerfile.jhub"
+    # Repository name under the Harbor tuw-geo project
+    IMAGE_NAME: "$CI_PROJECT_NAME"
+  script:
+    - buildah login -u "$JHUB_REGISTRY_USER" -p "$JHUB_REGISTRY_PASSWORD" "$REGISTRY"
+    - |
+      if [ -n "$CI_COMMIT_TAG" ]; then
+        buildah build -f "$JHUB_DOCKERFILE" --tag "$REGISTRY/tuw-geo/$IMAGE_NAME:$CI_COMMIT_TAG" --tag "$REGISTRY/tuw-geo/$IMAGE_NAME:latest" .
+      else
+        buildah build -f "$JHUB_DOCKERFILE" --tag "$REGISTRY/tuw-geo/$IMAGE_NAME:latest" .
+      fi
+    # Debug: list images after build
+    - buildah images
+    # Push the latest tag first
+    - buildah push "$REGISTRY/tuw-geo/$IMAGE_NAME:latest"
+    # Push the commit tag only when it is set (i.e. on tag pipelines)
+    - |
+      if [ -n "$CI_COMMIT_TAG" ]; then
+        buildah push "$REGISTRY/tuw-geo/$IMAGE_NAME:$CI_COMMIT_TAG"
+      fi

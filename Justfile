@@ -1,5 +1,8 @@
 set windows-shell := ["powershell"]
 
+# Load JHUB_REGISTRY_USER/JHUB_REGISTRY_PASSWORD (and other vars) from .env
+set dotenv-load := true
+
 # Default command lists all available recipes
 [default]
 _default:
@@ -161,3 +164,25 @@ release target: test
 [group("chore")]
 new *args:
     uv run tu-cookbook new {{ args }}
+
+# validate that the Harbor credentials are available
+# (loaded from .env via `set dotenv-load` at the top of the Justfile)
+[private]
+_authentication:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    : "${JHUB_REGISTRY_USER:?JHUB_REGISTRY_USER is not set (add it to .env or export it)}"
+    : "${JHUB_REGISTRY_PASSWORD:?JHUB_REGISTRY_PASSWORD is not set (add it to .env or export it)}"
+
+# build the Image and push it to the DataLab Harbor registry
+# (mirrors the jhub-image job in .gitlab-ci.yml)
+# Uses docker locally (a rootful daemon handles the jupyter base image's USER/chown
+# steps without user-namespace issues). CI uses buildah; see .gitlab-ci.yml.
+[group("build")]
+jhub-image registry="registry.datalab.tuwien.ac.at" namespace="tuw-geo" repo="microwave-remote-sensing-cookbook" dockerfile="Dockerfile.jhub" tag="latest": (_authentication)
+    #!/usr/bin/env bash
+    set -euo pipefail
+    docker login -u "$JHUB_REGISTRY_USER" -p "$JHUB_REGISTRY_PASSWORD" "{{ registry }}"
+    docker build -f "{{ dockerfile }}" -t "{{ registry }}/{{ namespace }}/{{ repo }}:{{ tag }}" .
+    docker images
+    docker push "{{ registry }}/{{ namespace }}/{{ repo }}:{{ tag }}"

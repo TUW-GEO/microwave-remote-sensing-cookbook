@@ -1,8 +1,11 @@
-name: tucookbooks
+name: mrs
 channels:
   - conda-forge
 dependencies:
-  - uv
+  - uv==0.12.1
   - python==3.12
+  - jupyter
+  - jupytext
+  - jupyterlab-myst
   - pip:
       - .

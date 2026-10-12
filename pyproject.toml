@@ -50,7 +50,7 @@ dependencies = [
   "shapely>=2.1.2",
   "snaphu>=0.4.1",
   "xarray>=2026.4",
-  "zarr<3",
+  "zarr>=3.4.1",
 ]
 optional-dependencies.book = [
   "jupyter>=1.1.1",
